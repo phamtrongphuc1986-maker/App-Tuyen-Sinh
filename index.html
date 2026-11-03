@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>App Tuyển Sinh Toàn Cầu — Trường Cao Đẳng, Đại Học Việt Nam & Thế Giới</title>
+<meta name="description" content="Tra cứu tuyển sinh các trường trung cấp, cao đẳng, đại học tại Việt Nam và thế giới: top trường danh giá, học phí rẻ nhất – cao nhất, điểm đầu vào, học bổng, hỗ trợ đầu ra và tuyển dụng.">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#eef4fa;color:#16324a;line-height:1.5}
+header{background:linear-gradient(135deg,#0b5fa5,#083d68);color:#fff;padding:18px 14px 14px;text-align:center}
+header h1{font-size:22px;line-height:1.3}
+header p{font-size:13px;opacity:.9;margin-top:4px}
+.wrap{max-width:860px;margin:0 auto;padding:12px}
+.timKiem{width:100%;padding:12px 14px;border:2px solid #0b5fa5;border-radius:12px;font-size:16px;margin:4px 0 6px;background:#fff}
+h2.tieuDeMuc{font-size:17px;color:#0b5fa5;margin:16px 0 8px}
+.luoiTop{display:grid;grid-template-columns:1fr;gap:10px}
+.oLon{display:flex;gap:12px;align-items:center;background:#fff;border:1px solid #cfe0ee;border-left:6px solid #f6a21e;border-radius:14px;padding:14px;cursor:pointer;box-shadow:0 1px 3px rgba(8,61,104,.08)}
+.oLon:active{background:#fdf3e0}
+.oLon .ic{font-size:34px}
+.oLon b{font-size:16px;color:#083d68;display:block}
+.oLon span{font-size:13px;color:#4a6a84}
+.luoiNuoc{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+.oNuoc{background:#fff;border:1px solid #cfe0ee;border-radius:14px;padding:12px 6px;text-align:center;cursor:pointer;box-shadow:0 1px 3px rgba(8,61,104,.07)}
+.oNuoc:active{background:#e8f2fb}
+.oNuoc .co{font-size:32px;display:block}
+.oNuoc b{font-size:13.5px;color:#083d68;display:block;margin-top:3px}
+.oNuoc span{font-size:11px;color:#6b8aa3}
+.nutQuayLai{display:inline-block;background:#0b5fa5;color:#fff;border:none;border-radius:10px;padding:9px 16px;font-size:15px;margin:6px 0 12px;cursor:pointer}
+.theTruong{background:#fff;border:1px solid #cfe0ee;border-radius:14px;padding:13px 14px;margin-bottom:10px}
+.theTruong h3{font-size:16px;color:#083d68}
+.theTruong .hang{font-weight:700;color:#e8862e;font-size:14px}
+.theTruong p{font-size:14px;margin-top:4px;color:#33566f}
+.theTruong p b{color:#16324a}
+.theTruong a,.nutLink{display:inline-block;margin-top:8px;background:#e8f2fb;color:#0b5fa5;border:1px solid #b9d4ea;border-radius:9px;padding:7px 12px;font-size:13.5px;text-decoration:none;margin-right:6px}
+.chiTiet p{font-size:15px;margin:7px 0}
+.chiTiet b{color:#083d68}
+.moTa{font-size:14px;color:#4a6a84;margin-bottom:10px}
+.keo{font-size:12.5px;color:#7a97ac;text-align:center;padding:16px 10px 26px}
+.an{display:none}
+.ketQua .theTruong{cursor:pointer}
+</style>
+</head>
+<body>
+<header>
+<h1>🎓 App Tuyển Sinh Toàn Cầu</h1>
+<p>Trung cấp · Cao đẳng · Đại học tại Việt Nam &amp; thế giới — điểm chuẩn, học phí, học bổng, đầu ra và tuyển dụng</p>
+</header>
+<div class="wrap">
+
+<div id="manHinhChinh">
+<input class="timKiem" id="oTim" type="search" placeholder="🔎 Tìm quốc gia, trường, ngành, việc làm...">
+<div class="ketQua an" id="ketQua"></div>
+
+<h2 class="tieuDeMuc">🏆 Các bảng Top thế giới</h2>
+<div class="luoiTop" id="luoiTop"></div>
+
+<h2 class="tieuDeMuc">⭐ Tuyển sinh &amp; việc làm</h2>
+<div class="luoiTop">
+<div class="oLon" onclick="moVN()"><div class="ic">🇻🇳</div><div><b>Tuyển Sinh Đầu Vào — Việt Nam</b><span>Điểm chuẩn từng nhóm ngành, học phí, học bổng của các trường cao đẳng, đại học tiêu biểu</span></div></div>
+<div class="oLon" onclick="moDauRa()"><div class="ic">🎯</div><div><b>Đầu Ra &amp; Hỗ Trợ Sinh Viên</b><span>Các trường hỗ trợ sinh viên ra sao: học bổng, ký túc xá, thực tập, việc làm sau tốt nghiệp</span></div></div>
+<div class="oLon" onclick="moViecLam()"><div class="ic">💼</div><div><b>Tuyển Dụng — Việt Nam &amp; Thế Giới</b><span>16 mục tuyển dụng từ lao động phổ thông tới chủ tịch, kèm link tuyển dụng chính thức 2026–2027</span></div></div>
+</div>
+
+<h2 class="tieuDeMuc">🌍 Các quốc gia — bấm vào từng nước để xem chi tiết</h2>
+<div class="luoiNuoc" id="luoiNuoc"></div>
+</div>
+
+<div id="manHinhChiTiet" class="an">
+<button class="nutQuayLai" onclick="veChinh()">⬅ Quay lại</button>
+<div id="noiDungChiTiet"></div>
+</div>
+
+<p class="keo">Số liệu trong app là khoảng tham khảo năm học 2025–2026, tổng hợp từ các bảng xếp hạng quốc tế (QS, THE) và trang chính thức của các trường. Điểm chuẩn, học phí và học bổng thay đổi từng năm — luôn kiểm chứng tại trang tuyển sinh chính thức của trường trước khi quyết định.</p>
+</div>
+
+<script>
+const COUNTRIES = [
+{name:"Việt Nam",flag:"🇻🇳",region:"Đông Nam Á",lang:"Tiếng Việt",tuition:"Công lập ≈ 15–60 triệu VNĐ/năm; tư thục 40–200 triệu/năm",note:"Hệ thống gồm đại học quốc gia, đại học vùng, trường công lập và tư thục; đầu vào chủ yếu qua điểm thi tốt nghiệp THPT và xét tuyển riêng từng trường.",schools:[{name:"ĐH Bách khoa Hà Nội (HUST)",note:"Kỹ thuật – công nghệ hàng đầu miền Bắc; điểm chuẩn thuộc nhóm cao nhất nước."},{name:"ĐHQG Hà Nội & ĐHQG TP.HCM",note:"Hai đại học quốc gia đa ngành, đa lĩnh vực, nghiên cứu mạnh."},{name:"ĐH Ngoại thương / ĐH Kinh tế Quốc dân",note:"Khối kinh tế – kinh doanh top đầu, điểm chuẩn cao."},{name:"PTIT – Học viện Công nghệ Bưu chính Viễn thông",note:"Mạnh CNTT, điện tử – viễn thông và AIoT."}],portal:"https://tuyensinh.vn",portalLabel:"Cổng thông tin tuyển sinh",scholar:"Học bổng khuyến khích học tập từng trường + học bổng doanh nghiệp (Viettel, Samsung, FPT...)"},
+{name:"Hoa Kỳ",flag:"🇺🇸",region:"Bắc Mỹ",lang:"Tiếng Anh",tuition:"Công lập ≈ 25.000–45.000 USD/năm; tư thục top 60.000–90.000 USD/năm",note:"Hệ đại học lớn nhất thế giới, mạnh nghiên cứu và học bổng cho sinh viên quốc tế giỏi; xét tuyển toàn diện (GPA, SAT/ACT, bài luận, hoạt động).",schools:[{name:"MIT",note:"Kỹ thuật – công nghệ số 1 thế giới (QS 2026 hạng 1)."},{name:"Stanford University",note:"Thung lũng Silicon; tỉ lệ trúng tuyển ≈ 4%."},{name:"Harvard University",note:"Ivy League; học bổng theo nhu cầu tài chính rất mạnh."},{name:"California Institute of Technology (Caltech)",note:"Khoa học – kỹ thuật tinh gọn, cực kỳ chọn lọc."}],portal:"https://www.commonapp.org",portalLabel:"Common App – nộp hồ sơ chung",scholar:"Học bổng need-based của các trường top + Fulbright (fulbright.org.vn)"},
+{name:"Vương quốc Anh",flag:"🇬🇧",region:"Châu Âu",lang:"Tiếng Anh",tuition:"≈ 15.000–40.000 GBP/năm tùy ngành (Y khoa cao nhất)",note:"Cử nhân thường 3 năm; Oxford/Cambridge xét tuyển riêng rất khắt khe qua UCAS.",schools:[{name:"University of Oxford",note:"Đại học lâu đời nhất khối Anh ngữ; QS 2026 hạng 4."},{name:"University of Cambridge",note:"Khoa học tự nhiên và toán học hàng đầu."},{name:"Imperial College London",note:"Kỹ thuật – y – khoa học; QS 2026 hạng 2."},{name:"UCL",note:"Đa ngành lớn tại London."}],portal:"https://www.ucas.com",portalLabel:"UCAS – cổng tuyển sinh Anh",scholar:"Chevening (học bổng chính phủ Anh, thạc sĩ) + học bổng từng trường"},
+{name:"Canada",flag:"🇨🇦",region:"Bắc Mỹ",lang:"Tiếng Anh / Tiếng Pháp",tuition:"≈ 20.000–45.000 CAD/năm cho sinh viên quốc tế",note:"Chính sách ở lại làm việc sau tốt nghiệp (PGWP) hấp dẫn; học phí thấp hơn Mỹ đáng kể.",schools:[{name:"University of Toronto",note:"ĐH lớn nhất Canada, top 25 thế giới."},{name:"McGill University",note:"Tại Montreal, mạnh y khoa và nghiên cứu."},{name:"University of British Columbia",note:"Tại Vancouver, học bổng quốc tế tốt."},{name:"University of Waterloo",note:"Nổi tiếng chương trình Co-op (vừa học vừa làm) ngành CNTT – kỹ thuật."}],portal:"https://www.ouac.on.ca",portalLabel:"OUAC (tỉnh Ontario)",scholar:"Học bổng đầu vào tự động theo điểm + Vanier (sau đại học)"},
+{name:"Úc",flag:"🇦🇺",region:"Châu Đại Dương",lang:"Tiếng Anh",tuition:"≈ 30.000–50.000 AUD/năm",note:"Nhóm Go8 gồm 8 đại học nghiên cứu hàng đầu; visa làm việc sau tốt nghiệp 2–4 năm.",schools:[{name:"University of Melbourne",note:"ĐH số 1 Úc nhiều năm liền."},{name:"University of Sydney",note:"Đa ngành, khuôn viên trung tâm Sydney."},{name:"Australian National University (ANU)",note:"Mạnh nghiên cứu, tại thủ đô Canberra."},{name:"Monash University",note:"Lớn, mạnh dược – kỹ thuật – kinh tế."}],portal:"https://www.studyinaustralia.gov.au",portalLabel:"Study Australia (chính phủ Úc)",scholar:"Australia Awards (học bổng chính phủ) + học bổng 15–25% của từng trường"},
+{name:"Đức",flag:"🇩🇪",region:"Châu Âu",lang:"Tiếng Đức / nhiều chương trình tiếng Anh",tuition:"Công lập: 0 EUR học phí tại hầu hết các bang (chỉ phí học kỳ ≈ 150–350 EUR)",note:"Điểm đến học phí rẻ nhất châu Âu cho sinh viên quốc tế; mạnh kỹ thuật – ô tô – tự động hóa; nhiều ngành yêu cầu tiếng Đức.",schools:[{name:"TU Munich (TUM)",note:"ĐH kỹ thuật top châu Âu."},{name:"RWTH Aachen",note:"Kỹ thuật cơ khí – ô tô nổi tiếng."},{name:"LMU Munich",note:"Đa ngành, nghiên cứu mạnh."},{name:"Heidelberg University",note:"ĐH lâu đời nhất nước Đức, mạnh y – khoa học."}],portal:"https://www.uni-assist.de",portalLabel:"uni-assist – nộp hồ sơ quốc tế",scholar:"DAAD (daad.de) – học bổng chính phủ Đức lớn nhất thế giới"},
+{name:"Pháp",flag:"🇫🇷",region:"Châu Âu",lang:"Tiếng Pháp / chương trình tiếng Anh",tuition:"Công lập ≈ 170–3.770 EUR/năm tùy bậc và diện sinh viên",note:"Học phí công lập thấp nhờ nhà nước trợ cấp; hệ Grandes Écoles danh giá song song đại học công.",schools:[{name:"Université PSL",note:"Tập hợp trường danh giá tại Paris, top đầu nước Pháp."},{name:"Sorbonne Université",note:"Khoa học – y khoa lớn tại Paris."},{name:"École Polytechnique",note:"Grande École kỹ thuật tinh hoa."},{name:"Université Paris-Saclay",note:"Mạnh khoa học tự nhiên, top thế giới về toán."}],portal:"https://www.campusfrance.org",portalLabel:"Campus France",scholar:"Eiffel Excellence (học bổng chính phủ Pháp)"},
+{name:"Nhật Bản",flag:"🇯🇵",region:"Đông Á",lang:"Tiếng Nhật / chương trình tiếng Anh",tuition:"Quốc lập ≈ 535.800 JPY/năm (mức chuẩn nhà nước)",note:"Học phí quốc lập đồng nhất và thấp; học bổng MEXT toàn phần rất nổi tiếng; cơ hội việc làm tại doanh nghiệp Nhật.",schools:[{name:"University of Tokyo",note:"ĐH số 1 Nhật Bản."},{name:"Kyoto University",note:"Nhiều giải Nobel, nghiên cứu tự do."},{name:"Osaka University",note:"Đa ngành lớn vùng Kansai."},{name:"Tokyo Institute of Technology (Science Tokyo)",note:"Chuyên kỹ thuật – công nghệ."}],portal:"https://www.studyinjapan.go.jp",portalLabel:"Study in Japan (chính phủ)",scholar:"MEXT – học bổng chính phủ Nhật toàn phần"},
+{name:"Hàn Quốc",flag:"🇰🇷",region:"Đông Á",lang:"Tiếng Hàn / chương trình tiếng Anh",tuition:"≈ 4.000–12.000 USD/năm tùy trường và ngành",note:"Học bổng GKS toàn phần của chính phủ; mạnh công nghệ, điện tử, giải trí; nhóm SKY (Seoul – Korea – Yonsei) danh giá nhất.",schools:[{name:"Seoul National University",note:"ĐH quốc gia số 1 Hàn Quốc."},{name:"KAIST",note:"Chuyên khoa học – kỹ thuật, học bổng toàn phần phổ biến."},{name:"Yonsei University",note:"Tư thục top đầu tại Seoul."},{name:"Korea University",note:"Khối kinh tế – luật mạnh."}],portal:"https://www.studyinkorea.go.kr",portalLabel:"Study in Korea (chính phủ)",scholar:"GKS – học bổng chính phủ Hàn Quốc toàn phần"},
+{name:"Singapore",flag:"🇸🇬",region:"Đông Nam Á",lang:"Tiếng Anh",tuition:"≈ 17.000–40.000 SGD/năm (có trợ giá MOE cho sinh viên quốc tế đủ điều kiện)",note:"Hai đại học công lập thuộc top châu Á và thế giới; đào tạo gắn chặt doanh nghiệp, tỉ lệ có việc làm sau tốt nghiệp rất cao.",schools:[{name:"National University of Singapore (NUS)",note:"Top 8–10 thế giới (QS), số 1 châu Á nhiều bảng xếp hạng."},{name:"Nanyang Technological University (NTU)",note:"Mạnh kỹ thuật – CNTT – AI."},{name:"Singapore Management University (SMU)",note:"Chuyên kinh doanh – quản trị."},{name:"SUTD",note:"Thiết kế – công nghệ theo mô hình MIT."}],portal:"https://www.moe.gov.sg",portalLabel:"Bộ Giáo dục Singapore",scholar:"Trợ giá Tuition Grant của MOE + học bổng ASEAN"},
+{name:"Trung Quốc",flag:"🇨🇳",region:"Đông Á",lang:"Tiếng Trung / chương trình tiếng Anh",tuition:"≈ 2.500–10.000 USD/năm tùy trường và ngành",note:"Học bổng CSC toàn phần quy mô lớn; Thanh Hoa – Bắc Đại thuộc top thế giới; đầu vào qua kỳ thi hoặc xét hồ sơ quốc tế.",schools:[{name:"Tsinghua University",note:"Kỹ thuật – công nghệ số 1 Trung Quốc."},{name:"Peking University",note:"Đa ngành, khoa học – nhân văn mạnh."},{name:"Fudan University",note:"Tại Thượng Hải, y – kinh tế mạnh."},{name:"Shanghai Jiao Tong University",note:"Kỹ thuật – y khoa hàng đầu."}],portal:"https://www.campuschina.org",portalLabel:"Campus China (học bổng CSC)",scholar:"CSC – học bổng chính phủ Trung Quốc toàn phần"},
+{name:"Đài Loan",flag:"🇹🇼",region:"Đông Á",lang:"Tiếng Trung / chương trình tiếng Anh",tuition:"≈ 1.500–4.000 USD/năm (công lập thấp)",note:"Mạnh ngành bán dẫn – điện tử (TSMC ecosystem); học phí thấp, học bổng trường và chính phủ nhiều.",schools:[{name:"National Taiwan University (NTU)",note:"ĐH số 1 Đài Loan."},{name:"National Tsing Hua University",note:"Mạnh bán dẫn – kỹ thuật, gần khu công nghệ Hsinchu."},{name:"National Yang Ming Chiao Tung University",note:"Điện tử – CNTT hàng đầu."},{name:"National Cheng Kung University",note:"Kỹ thuật lớn tại Đài Nam."}],portal:"https://www.studyintaiwan.org",portalLabel:"Study in Taiwan",scholar:"Taiwan Scholarship (chính phủ) + học bổng từng trường"},
+{name:"Hà Lan",flag:"🇳🇱",region:"Châu Âu",lang:"Rất nhiều chương trình tiếng Anh",tuition:"Sinh viên ngoài EU ≈ 9.000–20.000 EUR/năm",note:"Số chương trình dạy bằng tiếng Anh nhiều nhất châu Âu lục địa; mạnh logistics, nông nghiệp thực phẩm, kỹ thuật nước.",schools:[{name:"Delft University of Technology",note:"Kỹ thuật – kiến trúc top thế giới."},{name:"University of Amsterdam",note:"Đa ngành lớn, truyền thông – kinh tế mạnh."},{name:"Wageningen University",note:"Số 1 thế giới về nông nghiệp – thực phẩm."},{name:"Eindhoven University of Technology",note:"Gắn với cụm công nghệ ASML – Philips."}],portal:"https://www.studyinnl.org",portalLabel:"Study in NL",scholar:"NL Scholarship + học bổng từng trường"},
+{name:"Thụy Sĩ",flag:"🇨🇭",region:"Châu Âu",lang:"Đức / Pháp / Anh",tuition:"Công lập ≈ 1.000–4.000 CHF/năm (rẻ bất ngờ so với chi phí sống cao)",note:"ETH Zurich thuộc top 10 thế giới nhưng học phí công lập thấp; chi phí sinh hoạt lại thuộc nhóm đắt nhất châu Âu.",schools:[{name:"ETH Zurich",note:"QS 2026 hạng 7; nơi Einstein từng học."},{name:"EPFL",note:"Kỹ thuật – khoa học tại Lausanne."},{name:"University of Zurich",note:"Đa ngành lớn nhất Thụy Sĩ."},{name:"University of Geneva",note:"Mạnh quan hệ quốc tế, gần các tổ chức LHQ."}],portal:"https://www.studyinswitzerland.plus",portalLabel:"Study in Switzerland",scholar:"Swiss Government Excellence Scholarships"},
+{name:"Thụy Điển",flag:"🇸🇪",region:"Bắc Âu",lang:"Nhiều chương trình tiếng Anh",tuition:"Ngoài EU ≈ 80.000–200.000 SEK/năm",note:"Môi trường sáng tạo, cân bằng cuộc sống; học bổng Viện Thụy Điển cho sinh viên quốc tế.",schools:[{name:"KTH Royal Institute of Technology",note:"Kỹ thuật lớn nhất Bắc Âu."},{name:"Lund University",note:"Đa ngành lâu đời, quốc tế hóa cao."},{name:"Uppsala University",note:"ĐH lâu đời nhất Bắc Âu (1477)."},{name:"Karolinska Institutet",note:"Y khoa – nơi trao giải Nobel Y học."}],portal:"https://www.universityadmissions.se",portalLabel:"University Admissions Sweden",scholar:"Swedish Institute Scholarships"},
+{name:"Na Uy",flag:"🇳🇴",region:"Bắc Âu",lang:"Tiếng Na Uy / chương trình tiếng Anh",tuition:"Từ 2023: sinh viên ngoài EU/EEA phải đóng học phí ≈ 130.000–400.000 NOK/năm",note:"Trước đây miễn phí cho mọi quốc tịch, nay đã thu phí với sinh viên ngoài EU; chi phí sống cao.",schools:[{name:"University of Oslo",note:"ĐH lớn và lâu đời nhất Na Uy."},{name:"NTNU",note:"Kỹ thuật – công nghệ tại Trondheim."},{name:"University of Bergen",note:"Mạnh khoa học biển – khí hậu."},{name:"NHH",note:"Kinh tế – kinh doanh top Bắc Âu."}],portal:"https://www.studyinnorway.no",portalLabel:"Study in Norway",scholar:"Ít học bổng; chủ yếu tự túc sau thay đổi 2023"},
+{name:"Phần Lan",flag:"🇫🇮",region:"Bắc Âu",lang:"Nhiều chương trình tiếng Anh",tuition:"Ngoài EU ≈ 8.000–18.000 EUR/năm, có học bổng 50–100% theo kết quả",note:"Giáo dục được đánh giá cao về chất lượng và bình đẳng; Aalto nổi tiếng mô hình liên ngành.",schools:[{name:"Aalto University",note:"Công nghệ – thiết kế – kinh doanh liên ngành."},{name:"University of Helsinki",note:"Đa ngành nghiên cứu mạnh nhất Phần Lan."},{name:"University of Oulu",note:"Mạnh công nghệ thông tin – 6G."},{name:"Tampere University",note:"Khoa học xã hội – kỹ thuật."}],portal:"https://www.studyinfinland.fi",portalLabel:"Study in Finland",scholar:"Học bổng trường 50–100% học phí năm đầu"},
+{name:"Ý",flag:"🇮🇹",region:"Châu Âu",lang:"Tiếng Ý / chương trình tiếng Anh",tuition:"Công lập ≈ 0–4.000 EUR/năm theo thu nhập gia đình (Isee)",note:"Học phí công lập tính theo thu nhập nên rất thấp với nhiều sinh viên; học bổng vùng (DSU) hỗ trợ cả ăn ở.",schools:[{name:"Politecnico di Milano",note:"Kỹ thuật – kiến trúc – thiết kế số 1 Ý."},{name:"University of Bologna",note:"ĐH lâu đời nhất thế giới (1088)."},{name:"Sapienza University of Rome",note:"Một trong các ĐH lớn nhất châu Âu."},{name:"Politecnico di Torino",note:"Kỹ thuật – ô tô tại Turin."}],portal:"https://www.universitaly.it",portalLabel:"Universitaly",scholar:"Invest Your Talent in Italy + học bổng vùng DSU"},
+{name:"Tây Ban Nha",flag:"🇪🇸",region:"Châu Âu",lang:"Tiếng Tây Ban Nha / một phần tiếng Anh",tuition:"Công lập ≈ 800–3.500 EUR/năm",note:"Học phí thấp, đời sống sinh viên sôi động; mạnh du lịch – khách sạn, kiến trúc, y khoa.",schools:[{name:"University of Barcelona",note:"Đa ngành top đầu Tây Ban Nha."},{name:"Autonomous University of Madrid",note:"Nghiên cứu mạnh, nhiều học giả Nobel liên kết."},{name:"Pompeu Fabra University",note:"Kinh tế – truyền thông nổi bật."},{name:"Polytechnic University of Catalonia",note:"Kỹ thuật – kiến trúc tại Barcelona."}],portal:"https://www.unedasiss.es",portalLabel:"UNEDasiss (sinh viên quốc tế)",scholar:"Học bổng MAEC-AECID + học bổng từng vùng"},
+{name:"Ireland",flag:"🇮🇪",region:"Châu Âu",lang:"Tiếng Anh",tuition:"Ngoài EU ≈ 10.000–25.000 EUR/năm",note:"Quốc gia nói tiếng Anh tại EU, ở lại làm việc 2 năm sau tốt nghiệp; nhiều tập đoàn công nghệ đặt trụ sở châu Âu.",schools:[{name:"Trinity College Dublin",note:"ĐH danh giá nhất Ireland (1592)."},{name:"University College Dublin",note:"Lớn nhất Ireland, kinh doanh mạnh."},{name:"University of Galway",note:"Mạnh y sinh – công nghệ y tế."},{name:"University College Cork",note:"Nghiên cứu thực phẩm – dược nổi bật."}],portal:"https://www.educationinireland.com",portalLabel:"Education in Ireland",scholar:"Government of Ireland International Education Scholarships"},
+{name:"New Zealand",flag:"🇳🇿",region:"Châu Đại Dương",lang:"Tiếng Anh",tuition:"≈ 25.000–40.000 NZD/năm",note:"Cả 8 đại học đều nằm top thế giới; môi trường an toàn, chính sách ở lại làm việc sau tốt nghiệp rõ ràng.",schools:[{name:"University of Auckland",note:"ĐH số 1 New Zealand."},{name:"University of Otago",note:"Y khoa lâu đời, thành phố sinh viên Dunedin."},{name:"Victoria University of Wellington",note:"Tại thủ đô, luật – chính sách mạnh."},{name:"University of Canterbury",note:"Kỹ thuật tại Christchurch."}],portal:"https://www.studywithnewzealand.govt.nz",portalLabel:"Study with New Zealand",scholar:"Manaaki New Zealand Scholarships"},
+{name:"Malaysia",flag:"🇲🇾",region:"Đông Nam Á",lang:"Tiếng Anh phổ biến",tuition:"≈ 3.000–10.000 USD/năm (thấp hơn nhiều so với Anh/Mỹ)",note:"Nhiều chi nhánh đại học Anh – Úc (Monash, Nottingham, Southampton) với học phí rẻ hơn bản quốc; học bằng tiếng Anh.",schools:[{name:"University of Malaya",note:"ĐH số 1 Malaysia, top 100 thế giới."},{name:"Monash University Malaysia",note:"Chi nhánh ĐH Monash (Úc)."},{name:"University of Nottingham Malaysia",note:"Chi nhánh ĐH Nottingham (Anh)."},{name:"Taylor's University",note:"Tư thục mạnh du lịch – khách sạn."}],portal:"https://educationmalaysia.gov.my",portalLabel:"Education Malaysia",scholar:"Malaysia International Scholarship (MIS)"},
+{name:"Thái Lan",flag:"🇹🇭",region:"Đông Nam Á",lang:"Tiếng Thái / chương trình quốc tế tiếng Anh",tuition:"Chương trình quốc tế ≈ 2.000–6.000 USD/năm",note:"Gần Việt Nam, chi phí thấp; các chương trình quốc tế dạy tiếng Anh ngày càng nhiều.",schools:[{name:"Chulalongkorn University",note:"ĐH danh giá nhất Thái Lan."},{name:"Mahidol University",note:"Y khoa số 1 khu vực."},{name:"Thammasat University",note:"Kinh tế – luật – chính trị mạnh."},{name:"Kasetsart University",note:"Nông nghiệp – kỹ thuật lớn."}],portal:"https://www.studyinthailand.org",portalLabel:"Study in Thailand",scholar:"Học bổng chương trình quốc tế từng trường"},
+{name:"Ấn Độ",flag:"🇮🇳",region:"Nam Á",lang:"Tiếng Anh",tuition:"Công lập rất thấp (IIT ≈ 2.000–3.000 USD/năm); tư thục cao hơn",note:"Hệ IIT (công nghệ) và IIM (quản trị) cực kỳ cạnh tranh qua kỳ thi JEE/CAT; đào tạo kỹ thuật quy mô lớn nhất thế giới.",schools:[{name:"IIT Bombay",note:"Top IIT; tỉ lệ đỗ JEE Advanced dưới 2%."},{name:"IIT Delhi",note:"Kỹ thuật – khởi nghiệp mạnh tại thủ đô."},{name:"IISc Bangalore",note:"Nghiên cứu khoa học hàng đầu Ấn Độ."},{name:"University of Delhi",note:"Đa ngành lớn, điểm chuẩn rất cao."}],portal:"https://www.studyinindia.gov.in",portalLabel:"Study in India",scholar:"ICCR Scholarships (chính phủ Ấn Độ)"},
+{name:"Nga",flag:"🇷🇺",region:"Đông Âu",lang:"Tiếng Nga / một số chương trình tiếng Anh",tuition:"≈ 2.000–6.000 USD/năm; có chỉ tiêu học bổng chính phủ",note:"Truyền thống mạnh toán – vật lý – kỹ thuật; học bổng chính phủ Nga cấp qua Rossotrudnichestvo hằng năm.",schools:[{name:"Lomonosov Moscow State University",note:"ĐH lớn và danh giá nhất nước Nga."},{name:"Saint Petersburg State University",note:"Lâu đời, đa ngành."},{name:"Bauman Moscow State Technical University",note:"Kỹ thuật – hàng không vũ trụ."},{name:"ITMO University",note:"Nổi tiếng lập trình thi đấu – CNTT."}],portal:"https://education-in-russia.com",portalLabel:"Education in Russia",scholar:"Học bổng chính phủ Nga (quota) hằng năm"},
+{name:"Ba Lan",flag:"🇵🇱",region:"Trung Âu",lang:"Tiếng Ba Lan / chương trình tiếng Anh",tuition:"Chương trình tiếng Anh ≈ 2.000–6.000 EUR/năm",note:"Chi phí thấp trong EU, y khoa dạy tiếng Anh thu hút nhiều sinh viên quốc tế.",schools:[{name:"University of Warsaw",note:"ĐH lớn nhất Ba Lan."},{name:"Jagiellonian University",note:"Lâu đời (1364) tại Krakow, y khoa mạnh."},{name:"Warsaw University of Technology",note:"Kỹ thuật hàng đầu."},{name:"AGH University of Krakow",note:"Kỹ thuật – mỏ – CNTT."}],portal:"https://www.go-poland.pl",portalLabel:"Go Poland",scholar:"NAWA – học bổng chính phủ Ba Lan"},
+{name:"Séc",flag:"🇨🇿",region:"Trung Âu",lang:"Học tiếng Séc: miễn phí; tiếng Anh có phí",tuition:"Chương trình tiếng Séc 0 EUR; tiếng Anh ≈ 3.000–12.000 EUR/năm",note:"Điểm đặc biệt: học chương trình dạy bằng tiếng Séc được miễn học phí kể cả sinh viên quốc tế.",schools:[{name:"Charles University",note:"Lâu đời nhất Trung Âu (1348), y khoa mạnh."},{name:"Czech Technical University in Prague",note:"Kỹ thuật hàng đầu."},{name:"Masaryk University",note:"Đa ngành tại Brno."},{name:"Brno University of Technology",note:"Kỹ thuật – CNTT."}],portal:"https://www.studyin.cz",portalLabel:"Study in Czechia",scholar:"Học bổng chính phủ cho nước đang phát triển"},
+{name:"Hungary",flag:"🇭🇺",region:"Trung Âu",lang:"Tiếng Hungary / chương trình tiếng Anh",tuition:"≈ 3.000–8.000 EUR/năm; học bổng Stipendium Hungaricum toàn phần",note:"Học bổng chính phủ Stipendium Hungaricum mở cho sinh viên Việt Nam hằng năm — một trong các đường du học toàn phần dễ tiếp cận nhất.",schools:[{name:"Eötvös Loránd University (ELTE)",note:"Đa ngành số 1 Hungary."},{name:"Semmelweis University",note:"Y khoa nổi tiếng châu Âu."},{name:"Budapest University of Technology (BME)",note:"Kỹ thuật hàng đầu."},{name:"University of Szeged",note:"Nghiên cứu mạnh, học bổng nhiều."}],portal:"https://stipendiumhungaricum.hu",portalLabel:"Stipendium Hungaricum",scholar:"Stipendium Hungaricum – toàn phần (học phí + ăn ở + trợ cấp)"},
+{name:"Áo",flag:"🇦🇹",region:"Châu Âu",lang:"Tiếng Đức / chương trình tiếng Anh",tuition:"Ngoài EU ≈ 726 EUR/học kỳ tại đại học công lập",note:"Học phí thấp, chất lượng sống cao tại Vienna; mạnh âm nhạc, kỹ thuật, kinh tế.",schools:[{name:"University of Vienna",note:"ĐH lớn nhất khu vực nói tiếng Đức."},{name:"TU Wien",note:"Kỹ thuật tại Vienna."},{name:"WU Vienna",note:"Kinh tế – kinh doanh lớn nhất châu Âu."},{name:"University of Graz",note:"Đa ngành lâu đời."}],portal:"https://studyinaustria.at",portalLabel:"Study in Austria",scholar:"OeAD – học bổng chính phủ Áo"},
+{name:"Đan Mạch",flag:"🇩🇰",region:"Bắc Âu",lang:"Nhiều chương trình tiếng Anh",tuition:"Ngoài EU ≈ 6.000–16.000 EUR/năm",note:"Mô hình học gắn thực tiễn, hạnh phúc cao; mạnh năng lượng xanh, thiết kế, công nghệ sinh học.",schools:[{name:"University of Copenhagen",note:"ĐH lớn nhất Đan Mạch."},{name:"Technical University of Denmark (DTU)",note:"Kỹ thuật top châu Âu."},{name:"Aarhus University",note:"Đa ngành nghiên cứu mạnh."},{name:"Copenhagen Business School",note:"Kinh doanh nổi tiếng châu Âu."}],portal:"https://studyindenmark.dk",portalLabel:"Study in Denmark",scholar:"Học bổng chính phủ Đan Mạch (số lượng hạn chế)"},
+{name:"Bỉ",flag:"🇧🇪",region:"Châu Âu",lang:"Hà Lan / Pháp / Anh",tuition:"Ngoài EU ≈ 1.000–6.000 EUR/năm tùy trường",note:"KU Leuven thuộc top nghiên cứu châu Âu; Brussels là thủ phủ EU — thuận lợi ngành quan hệ quốc tế, luật EU.",schools:[{name:"KU Leuven",note:"Top 50–60 thế giới, nghiên cứu rất mạnh."},{name:"Ghent University",note:"Đa ngành, sinh học – thú y nổi bật."},{name:"UCLouvain",note:"ĐH nói tiếng Pháp lớn."},{name:"Vrije Universiteit Brussel",note:"Tại thủ đô Brussels."}],portal:"https://www.studyinbelgium.be",portalLabel:"Study in Belgium",scholar:"VLIR-UOS (cho nước đang phát triển)"},
+{name:"Hồng Kông",flag:"🇭🇰",region:"Đông Á",lang:"Tiếng Anh",tuition:"≈ 20.000–24.000 USD/năm, học bổng đầu vào cạnh tranh",note:"HKU – HKUST – CUHK đều top đầu châu Á; học bổng toàn phần cho học sinh giỏi quốc tế.",schools:[{name:"University of Hong Kong (HKU)",note:"QS 2026 hạng 11, số 1 Hồng Kông."},{name:"HKUST",note:"Khoa học – kỹ thuật – kinh doanh trẻ và mạnh."},{name:"Chinese University of Hong Kong",note:"Đa ngành, y khoa mạnh."},{name:"City University of Hong Kong",note:"Vươn hạng nhanh những năm gần đây."}],portal:"https://www.studyinhongkong.edu.hk",portalLabel:"Study in Hong Kong",scholar:"HK PhD Fellowship + học bổng đầu vào từng trường"},
+{name:"UAE",flag:"🇦🇪",region:"Trung Đông",lang:"Tiếng Anh",tuition:"≈ 15.000–40.000 USD/năm; nhiều học bổng lớn",note:"Trung tâm giáo dục mới nổi với nhiều chi nhánh đại học Mỹ – Anh; học bổng hào phóng tại các trường như NYU Abu Dhabi.",schools:[{name:"NYU Abu Dhabi",note:"Học bổng toàn phần rất cạnh tranh."},{name:"Khalifa University",note:"Kỹ thuật – AI, học bổng toàn phần phổ biến."},{name:"United Arab Emirates University",note:"ĐH quốc gia của UAE."},{name:"American University of Sharjah",note:"Theo mô hình Mỹ."}],portal:"https://www.moe.gov.ae",portalLabel:"Bộ Giáo dục UAE",scholar:"Học bổng toàn phần Khalifa/NYUAD cho sinh viên giỏi"},
+{name:"Qatar",flag:"🇶🇦",region:"Trung Đông",lang:"Tiếng Anh",tuition:"Nhiều sinh viên quốc tế được tài trợ toàn phần tại Education City",note:"Education City tại Doha quy tụ chi nhánh Georgetown, Northwestern, Carnegie Mellon... với gói tài trợ hào phóng.",schools:[{name:"Qatar University",note:"ĐH quốc gia, top khu vực Ả Rập."},{name:"Georgetown University in Qatar",note:"Chi nhánh ĐH Georgetown (Mỹ)."},{name:"Carnegie Mellon University in Qatar",note:"CNTT – kinh doanh."},{name:"Weill Cornell Medicine – Qatar",note:"Y khoa theo chuẩn Cornell."}],portal:"https://www.qf.org.qa",portalLabel:"Qatar Foundation – Education City",scholar:"Tài trợ của Qatar Foundation cho sinh viên được nhận"},
+{name:"Israel",flag:"🇮🇱",region:"Trung Đông",lang:"Tiếng Hebrew / chương trình tiếng Anh",tuition:"≈ 10.000–16.000 USD/năm chương trình quốc tế",note:"'Quốc gia khởi nghiệp' — Technion và Hebrew University mạnh về công nghệ, y học, nông nghiệp công nghệ cao.",schools:[{name:"Hebrew University of Jerusalem",note:"Đa ngành danh giá nhất Israel."},{name:"Technion",note:"Kỹ thuật – công nghệ, nhiều giải Nobel."},{name:"Tel Aviv University",note:"Lớn nhất Israel, khởi nghiệp mạnh."},{name:"Weizmann Institute",note:"Viện nghiên cứu khoa học cơ bản."}],portal:"https://studyinisrael.che.org.il",portalLabel:"Study in Israel",scholar:"Học bổng từng trường + học bổng chính phủ số lượng nhỏ"},
+{name:"Nam Phi",flag:"🇿🇦",region:"Châu Phi",lang:"Tiếng Anh",tuition:"≈ 3.000–8.000 USD/năm",note:"Hệ đại học mạnh nhất châu Phi, học bằng tiếng Anh, chi phí thấp.",schools:[{name:"University of Cape Town",note:"ĐH số 1 châu Phi nhiều bảng xếp hạng."},{name:"University of the Witwatersrand",note:"Tại Johannesburg, y – khoa học mạnh."},{name:"Stellenbosch University",note:"Nghiên cứu mạnh vùng Western Cape."},{name:"University of Pretoria",note:"Đa ngành lớn."}],portal:"https://www.usaf.ac.za",portalLabel:"Universities South Africa",scholar:"Học bổng từng trường cho sinh viên quốc tế"},
+{name:"Brazil",flag:"🇧🇷",region:"Nam Mỹ",lang:"Tiếng Bồ Đào Nha",tuition:"Đại học liên bang/tiểu bang công lập: miễn học phí",note:"USP thuộc top Mỹ Latinh; hệ công lập miễn phí nhưng thi đầu vào (vestibular/ENEM) rất cạnh tranh.",schools:[{name:"University of São Paulo (USP)",note:"ĐH lớn và mạnh nhất Mỹ Latinh."},{name:"University of Campinas (Unicamp)",note:"Nghiên cứu – kỹ thuật mạnh."},{name:"Federal University of Rio de Janeiro",note:"Đa ngành lâu đời."},{name:"São Paulo State University (Unesp)",note:"Mạng lưới toàn bang São Paulo."}],portal:"https://www.gov.br/mec",portalLabel:"Bộ Giáo dục Brazil",scholar:"PEC-G – chương trình sinh viên quốc tế của chính phủ"},
+{name:"Mexico",flag:"🇲🇽",region:"Mỹ Latinh",lang:"Tiếng Tây Ban Nha",tuition:"UNAM công lập gần như miễn phí (phí tượng trưng)",note:"UNAM là một trong các đại học lớn nhất thế giới với hơn 300.000 sinh viên, học phí tượng trưng.",schools:[{name:"National Autonomous University of Mexico (UNAM)",note:"Siêu đại học của Mỹ Latinh, Di sản UNESCO."},{name:"Tecnológico de Monterrey",note:"Tư thục top đầu, khởi nghiệp mạnh."},{name:"National Polytechnic Institute (IPN)",note:"Kỹ thuật công lập lớn."},{name:"University of Guadalajara",note:"Đa ngành lớn phía tây Mexico."}],portal:"https://www.gob.mx/sep",portalLabel:"Bộ Giáo dục Mexico",scholar:"Học bổng chính phủ Mexico cho sinh viên quốc tế"},
+{name:"Thổ Nhĩ Kỳ",flag:"🇹🇷",region:"Á – Âu",lang:"Tiếng Thổ / chương trình tiếng Anh",tuition:"Học bổng Türkiye Burslari toàn phần; tự túc ≈ 1.000–10.000 USD/năm",note:"Chương trình học bổng chính phủ Türkiye Scholarships rất hào phóng và mở cho Việt Nam.",schools:[{name:"Koç University",note:"Tư thục top đầu, dạy tiếng Anh."},{name:"Bilkent University",note:"ĐH tư phi lợi nhuận đầu tiên của Thổ."},{name:"Middle East Technical University",note:"Kỹ thuật công lập danh giá."},{name:"Boğaziçi University",note:"Công lập tại Istanbul, chọn lọc cao."}],portal:"https://www.turkiyeburslari.gov.tr",portalLabel:"Türkiye Burslari (học bổng)",scholar:"Türkiye Scholarships – toàn phần gồm cả vé máy bay"},
+{name:"Indonesia",flag:"🇮🇩",region:"Đông Nam Á",lang:"Tiếng Indonesia / một số chương trình tiếng Anh",tuition:"≈ 1.000–5.000 USD/năm",note:"Hệ đại học lớn của Đông Nam Á; học bổng KNB của chính phủ cho sinh viên nước đang phát triển.",schools:[{name:"University of Indonesia",note:"ĐH số 1 Indonesia."},{name:"Gadjah Mada University",note:"Đa ngành lớn tại Yogyakarta."},{name:"Bandung Institute of Technology (ITB)",note:"Kỹ thuật hàng đầu."},{name:"Airlangga University",note:"Y khoa mạnh."}],portal:"https://knb.kemdiktisaintek.go.id",portalLabel:"Học bổng KNB",scholar:"KNB Scholarship – chính phủ Indonesia"}
+];
+
+// data_lists.js — Các bảng xếp hạng trường đại học thế giới cho app tuyển sinh.
+// Số liệu là khoảng tham khảo năm học 2025–2026, sinh viên cần kiểm chứng tại trang chính thức của từng trường.
+const TOP_LISTS = [
+  {
+    id: "danh-gia",
+    title: "Top 50 trường đại học danh giá nhất thế giới",
+    desc: "50 trường dẫn đầu bảng xếp hạng QS World University Rankings 2026 — nhóm trường mơ ước của sinh viên toàn cầu.",
+    source: "Nguồn tham khảo: QS World University Rankings 2026 (TopUniversities), trang chính thức các trường",
+    note: "Thứ hạng theo QS 2026; thứ hạng có thể thay đổi nhẹ theo từng năm công bố.",
+    items: [
+      { name: "Massachusetts Institute of Technology (MIT)", country: "Mỹ", metric: "QS 2026: hạng 1", note: "Viện công nghệ số 1 thế giới, mạnh về kỹ thuật, máy tính và khoa học tự nhiên.", url: "https://web.mit.edu" },
+      { name: "Imperial College London", country: "Anh", metric: "QS 2026: hạng 2", note: "Trường hàng đầu châu Âu về khoa học, kỹ thuật, y học và kinh doanh.", url: "https://www.imperial.ac.uk" },
+      { name: "Stanford University", country: "Mỹ", metric: "QS 2026: hạng 3", note: "Cái nôi khởi nghiệp tại Thung lũng Silicon, mạnh về công nghệ và kinh doanh.", url: "https://www.stanford.edu" },
+      { name: "University of Oxford", country: "Anh", metric: "QS 2026: hạng 4", note: "Đại học lâu đời nhất thế giới nói tiếng Anh, danh tiếng học thuật toàn cầu.", url: "https://www.ox.ac.uk" },
+      { name: "Harvard University", country: "Mỹ", metric: "QS 2026: hạng 5", note: "Trường Ivy League nổi tiếng nhất, mạnh toàn diện từ y học đến luật và kinh tế.", url: "https://www.harvard.edu" },
+      { name: "University of Cambridge", country: "Anh", metric: "QS 2026: hạng 6", note: "Đối trọng lâu đời của Oxford, nổi bật về khoa học tự nhiên và toán học.", url: "https://www.cam.ac.uk" },
+      { name: "ETH Zurich", country: "Thụy Sĩ", metric: "QS 2026: hạng 7", note: "Trường kỹ thuật số 1 châu Âu lục địa, nơi Albert Einstein từng học và dạy.", url: "https://ethz.ch" },
+      { name: "National University of Singapore (NUS)", country: "Singapore", metric: "QS 2026: hạng 8", note: "Đại học số 1 châu Á, mạnh về kỹ thuật, máy tính và kinh doanh.", url: "https://www.nus.edu.sg" },
+      { name: "UCL (University College London)", country: "Anh", metric: "QS 2026: hạng 9", note: "Đại học tổng hợp lớn tại London, mạnh về kiến trúc, y học và khoa học xã hội.", url: "https://www.ucl.ac.uk" },
+      { name: "California Institute of Technology (Caltech)", country: "Mỹ", metric: "QS 2026: hạng 10", note: "Trường khoa học – kỹ thuật quy mô nhỏ nhưng cực kỳ tinh hoa tại California.", url: "https://www.caltech.edu" },
+      { name: "The University of Hong Kong (HKU)", country: "Hồng Kông", metric: "QS 2026: hạng 11", note: "Đại học lâu đời và danh giá nhất Hồng Kông, giảng dạy bằng tiếng Anh.", url: "https://www.hku.hk" },
+      { name: "Nanyang Technological University (NTU Singapore)", country: "Singapore", metric: "QS 2026: hạng 12", note: "Trường trẻ nhưng thăng hạng rất nhanh, mạnh về kỹ thuật và vật liệu.", url: "https://www.ntu.edu.sg" },
+      { name: "University of Edinburgh", country: "Anh (Scotland)", metric: "QS 2026: hạng 13", note: "Đại học danh tiếng của Scotland, nổi bật về tin học và trí tuệ nhân tạo.", url: "https://www.ed.ac.uk" },
+      { name: "King's College London", country: "Anh", metric: "QS 2026: hạng 14", note: "Mạnh về y học, luật, khoa học xã hội và các ngành sức khỏe.", url: "https://www.kcl.ac.uk" },
+      { name: "Tsinghua University", country: "Trung Quốc", metric: "QS 2026: hạng 15", note: "Đại học số 1 Trung Quốc về kỹ thuật và công nghệ, tại Bắc Kinh.", url: "https://www.tsinghua.edu.cn" },
+      { name: "EPFL (École Polytechnique Fédérale de Lausanne)", country: "Thụy Sĩ", metric: "QS 2026: hạng 16", note: "Viện bách khoa liên bang tại Lausanne, mạnh về kỹ thuật và khoa học máy tính.", url: "https://www.epfl.ch" },
+      { name: "Yale University", country: "Mỹ", metric: "QS 2026: hạng 17", note: "Trường Ivy League nổi tiếng về luật, nghệ thuật và khoa học xã hội.", url: "https://www.yale.edu" },
+      { name: "McGill University", country: "Canada", metric: "QS 2026: hạng 18", note: "Đại học tiếng Anh danh giá nhất Canada, tọa lạc tại Montreal.", url: "https://www.mcgill.ca" },
+      { name: "Cornell University", country: "Mỹ", metric: "QS 2026: hạng 19", note: "Trường Ivy League mạnh về kỹ thuật, nông nghiệp và quản trị khách sạn.", url: "https://www.cornell.edu" },
+      { name: "UNSW Sydney", country: "Úc", metric: "QS 2026: hạng 20", note: "Đại học hàng đầu Úc về kỹ thuật, kinh doanh và đổi mới sáng tạo.", url: "https://www.unsw.edu.au" },
+      { name: "Princeton University", country: "Mỹ", metric: "QS 2026: hạng 21", note: "Trường Ivy League tinh hoa, nổi bật về toán, vật lý và kinh tế học.", url: "https://www.princeton.edu" },
+      { name: "University of Manchester", country: "Anh", metric: "QS 2026: hạng 22", note: "Đại học nghiên cứu lớn của Anh, mạnh về kỹ thuật và khoa học vật liệu.", url: "https://www.manchester.ac.uk" },
+      { name: "University of Melbourne", country: "Úc", metric: "QS 2026: hạng 23", note: "Đại học được xếp hạng cao nhất của Úc trong nhiều bảng xếp hạng.", url: "https://www.unimelb.edu.au" },
+      { name: "Peking University", country: "Trung Quốc", metric: "QS 2026: hạng 24", note: "Đại học tổng hợp lâu đời nhất Trung Quốc, mạnh về khoa học và nhân văn.", url: "https://www.pku.edu.cn" },
+      { name: "University of Toronto", country: "Canada", metric: "QS 2026: hạng 25", note: "Đại học nghiên cứu số 1 Canada, nổi bật về y học và trí tuệ nhân tạo.", url: "https://www.utoronto.ca" },
+      { name: "Johns Hopkins University", country: "Mỹ", metric: "QS 2026: hạng 26", note: "Số 1 thế giới về y học và nghiên cứu sức khỏe cộng đồng.", url: "https://www.jhu.edu" },
+      { name: "Columbia University", country: "Mỹ", metric: "QS 2026: hạng 27", note: "Trường Ivy League tại New York, mạnh về báo chí, kinh doanh và luật.", url: "https://www.columbia.edu" },
+      { name: "University of Sydney", country: "Úc", metric: "QS 2026: hạng 28", note: "Đại học lâu đời nhất nước Úc với khuôn viên nổi tiếng tại Sydney.", url: "https://www.sydney.edu.au" },
+      { name: "University of Chicago", country: "Mỹ", metric: "QS 2026: hạng 29", note: "Nổi tiếng về kinh tế học, luật và nghiên cứu học thuật nghiêm ngặt.", url: "https://www.uchicago.edu" },
+      { name: "Seoul National University", country: "Hàn Quốc", metric: "QS 2026: hạng 30", note: "Đại học quốc gia số 1 Hàn Quốc, đầu vào cạnh tranh nhất nước này.", url: "https://www.snu.ac.kr" },
+      { name: "Monash University", country: "Úc", metric: "QS 2026: hạng 31", note: "Đại học lớn nhất Úc, mạnh về dược học và y sinh.", url: "https://www.monash.edu" },
+      { name: "Australian National University (ANU)", country: "Úc", metric: "QS 2026: hạng 32", note: "Đại học quốc gia tại Canberra, mạnh về khoa học xã hội và chính sách công.", url: "https://www.anu.edu.au" },
+      { name: "University of Queensland", country: "Úc", metric: "QS 2026: hạng 33", note: "Mạnh về khoa học đời sống, nông nghiệp và công nghệ sinh học.", url: "https://www.uq.edu.au" },
+      { name: "University of British Columbia (UBC)", country: "Canada", metric: "QS 2026: hạng 34", note: "Đại học nghiên cứu lớn tại Vancouver, khuôn viên ven biển nổi tiếng đẹp.", url: "https://www.ubc.ca" },
+      { name: "The Chinese University of Hong Kong (CUHK)", country: "Hồng Kông", metric: "QS 2026: hạng 35", note: "Đại học nghiên cứu hàng đầu Hồng Kông với hệ thống trường thành viên.", url: "https://www.cuhk.edu.hk" },
+      { name: "Hong Kong University of Science and Technology (HKUST)", country: "Hồng Kông", metric: "QS 2026: hạng 36", note: "Trường trẻ chuyên về khoa học, kỹ thuật và kinh doanh, thăng hạng nhanh.", url: "https://hkust.edu.hk" },
+      { name: "University of Tokyo", country: "Nhật Bản", metric: "QS 2026: hạng 37", note: "Đại học danh giá nhất Nhật Bản, đầu vào khó nhất nước này.", url: "https://www.u-tokyo.ac.jp" },
+      { name: "University of Bristol", country: "Anh", metric: "QS 2026: hạng 38", note: "Đại học nghiên cứu mạnh của Anh, nổi bật về kỹ thuật và khoa học.", url: "https://www.bristol.ac.uk" },
+      { name: "Université PSL (Paris Sciences et Lettres)", country: "Pháp", metric: "QS 2026: hạng 39", note: "Liên minh các trường tinh hoa tại Paris, mạnh về khoa học và nghệ thuật.", url: "https://psl.eu" },
+      { name: "Technical University of Munich (TUM)", country: "Đức", metric: "QS 2026: hạng 40", note: "Đại học kỹ thuật hàng đầu nước Đức, học phí công lập rất thấp.", url: "https://www.tum.de" },
+      { name: "University of Pennsylvania", country: "Mỹ", metric: "QS 2026: hạng 41", note: "Nơi có trường kinh doanh Wharton nổi tiếng thế giới.", url: "https://www.upenn.edu" },
+      { name: "Northwestern University", country: "Mỹ", metric: "QS 2026: hạng 42", note: "Mạnh về báo chí, truyền thông, kinh doanh và kỹ thuật.", url: "https://www.northwestern.edu" },
+      { name: "Duke University", country: "Mỹ", metric: "QS 2026: hạng 43", note: "Đại học tư thục danh tiếng tại Bắc Carolina, mạnh về y học và luật.", url: "https://www.duke.edu" },
+      { name: "Carnegie Mellon University", country: "Mỹ", metric: "QS 2026: hạng 44", note: "Số 1 thế giới về khoa học máy tính và robot.", url: "https://www.cmu.edu" },
+      { name: "University of Amsterdam", country: "Hà Lan", metric: "QS 2026: hạng 45", note: "Đại học lớn nhất Hà Lan, mạnh về truyền thông và khoa học xã hội.", url: "https://www.uva.nl" },
+      { name: "LMU Munich", country: "Đức", metric: "QS 2026: hạng 46", note: "Đại học tổng hợp danh tiếng nhất nước Đức, miễn học phí bậc cử nhân công lập.", url: "https://www.lmu.de" },
+      { name: "New York University (NYU)", country: "Mỹ", metric: "QS 2026: hạng 47", note: "Đại học tư lớn nhất nước Mỹ, mạnh về nghệ thuật, điện ảnh và kinh doanh.", url: "https://www.nyu.edu" },
+      { name: "University of Michigan, Ann Arbor", country: "Mỹ", metric: "QS 2026: hạng 48", note: "Đại học công lập hàng đầu nước Mỹ, mạnh toàn diện nhiều lĩnh vực.", url: "https://umich.edu" },
+      { name: "London School of Economics (LSE)", country: "Anh", metric: "QS 2026: hạng 49", note: "Trường chuyên về kinh tế, chính trị và khoa học xã hội hàng đầu thế giới.", url: "https://www.lse.ac.uk" },
+      { name: "Kyoto University", country: "Nhật Bản", metric: "QS 2026: hạng 50", note: "Đại học quốc gia danh giá thứ hai của Nhật, nhiều chủ nhân giải Nobel.", url: "https://www.kyoto-u.ac.jp" }
+    ]
+  },
+  {
+    id: "dat-nhat",
+    title: "Top trường đại học học phí cao nhất thế giới",
+    desc: "Các trường tư thục có học phí niêm yết cao nhất, chủ yếu tại Mỹ — chưa kể ăn ở, bảo hiểm và chi phí sinh hoạt.",
+    source: "Nguồn tham khảo: trang học phí chính thức các trường, College Board, Times Higher Education",
+    note: "Học phí là khoảng tham khảo năm học 2025–2026 cho sinh viên quốc tế/bậc cử nhân, chưa gồm ăn ở; nhiều trường có học bổng và hỗ trợ tài chính lớn.",
+    items: [
+      { name: "Columbia University", country: "Mỹ", metric: "≈ 68.000–72.000 USD/năm", note: "Học phí thuộc nhóm cao nhất Ivy League, cộng chi phí sống đắt đỏ tại New York.", url: "https://www.columbia.edu" },
+      { name: "New York University (NYU)", country: "Mỹ", metric: "≈ 62.000–68.000 USD/năm", note: "Đại học tư lớn tại New York, tổng chi phí mỗi năm thường vượt 90.000 USD.", url: "https://www.nyu.edu" },
+      { name: "University of Southern California (USC)", country: "Mỹ", metric: "≈ 66.000–70.000 USD/năm", note: "Trường tư lớn tại Los Angeles, mạnh về điện ảnh và kinh doanh.", url: "https://www.usc.edu" },
+      { name: "Harvard University", country: "Mỹ", metric: "≈ 59.000–65.000 USD/năm", note: "Học phí cao nhưng hỗ trợ tài chính rất mạnh cho sinh viên thu nhập thấp.", url: "https://www.harvard.edu" },
+      { name: "Stanford University", country: "Mỹ", metric: "≈ 62.000–68.000 USD/năm", note: "Học phí cao, song nhiều sinh viên được miễn giảm nhờ quỹ hỗ trợ lớn.", url: "https://www.stanford.edu" },
+      { name: "University of Chicago", country: "Mỹ", metric: "≈ 65.000–70.000 USD/năm", note: "Thuộc nhóm học phí cử nhân cao nhất nước Mỹ nhiều năm liền.", url: "https://www.uchicago.edu" },
+      { name: "Vanderbilt University", country: "Mỹ", metric: "≈ 63.000–67.000 USD/năm", note: "Trường tư danh tiếng tại Tennessee, học phí tăng đều hằng năm.", url: "https://www.vanderbilt.edu" },
+      { name: "Brown University", country: "Mỹ", metric: "≈ 65.000–70.000 USD/năm", note: "Ivy League với chương trình mở nổi tiếng, học phí nhóm cao nhất.", url: "https://www.brown.edu" },
+      { name: "Dartmouth College", country: "Mỹ", metric: "≈ 65.000–68.000 USD/năm", note: "Trường Ivy League quy mô nhỏ tại New Hampshire, chi phí toàn phần rất cao.", url: "https://home.dartmouth.edu" },
+      { name: "Northwestern University", country: "Mỹ", metric: "≈ 65.000–68.000 USD/năm", note: "Học phí cao kèm chi phí ký túc xá tại khu vực Chicago.", url: "https://www.northwestern.edu" },
+      { name: "University of Pennsylvania", country: "Mỹ", metric: "≈ 66.000–70.000 USD/năm", note: "Trường Wharton và các chương trình chuyên nghiệp có phí thuộc nhóm cao nhất.", url: "https://www.upenn.edu" },
+      { name: "Yale University", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Học phí cao nhưng chính sách hỗ trợ tài chính theo nhu cầu rất hào phóng.", url: "https://www.yale.edu" },
+      { name: "Duke University", country: "Mỹ", metric: "≈ 63.000–68.000 USD/năm", note: "Tổng chi phí một năm học thường tiệm cận 90.000 USD.", url: "https://www.duke.edu" },
+      { name: "Tufts University", country: "Mỹ", metric: "≈ 65.000–69.000 USD/năm", note: "Trường tư tại Boston, học phí thuộc nhóm cao nhất vùng New England.", url: "https://www.tufts.edu" },
+      { name: "Boston University", country: "Mỹ", metric: "≈ 62.000–67.000 USD/năm", note: "Đại học tư lớn tại Boston với học phí và phí sinh hoạt đều cao.", url: "https://www.bu.edu" },
+      { name: "Boston College", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Trường tư Công giáo danh tiếng, học phí nhóm đầu nước Mỹ.", url: "https://www.bc.edu" },
+      { name: "Georgetown University", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Nằm tại thủ đô Washington D.C., mạnh về luật và quan hệ quốc tế.", url: "https://www.georgetown.edu" },
+      { name: "Emory University", country: "Mỹ", metric: "≈ 60.000–65.000 USD/năm", note: "Trường tư tại Atlanta, nổi bật về y học và kinh doanh.", url: "https://www.emory.edu" },
+      { name: "Rice University", country: "Mỹ", metric: "≈ 55.000–60.000 USD/năm", note: "Học phí thấp hơn mặt bằng tinh hoa Mỹ nhờ chương trình Rice Investment hỗ trợ mạnh.", url: "https://www.rice.edu" },
+      { name: "Washington University in St. Louis", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Trường tư nghiên cứu mạnh, đặc biệt về y học.", url: "https://wustl.edu" },
+      { name: "Northeastern University", country: "Mỹ", metric: "≈ 60.000–65.000 USD/năm", note: "Nổi tiếng với chương trình thực tập hưởng lương co-op, học phí cao.", url: "https://www.northeastern.edu" },
+      { name: "Sarah Lawrence College", country: "Mỹ", metric: "≈ 63.000–68.000 USD/năm", note: "Trường khai phóng nhỏ gần New York, nhiều năm thuộc nhóm đắt nhất nước Mỹ.", url: "https://www.sarahlawrence.edu" },
+      { name: "Kenyon College", country: "Mỹ", metric: "≈ 66.000–70.000 USD/năm", note: "Trường khai phóng tại Ohio thường xuyên nằm trong nhóm học phí cao nhất.", url: "https://www.kenyon.edu" },
+      { name: "Oberlin College", country: "Mỹ", metric: "≈ 63.000–68.000 USD/năm", note: "Nổi tiếng với nhạc viện lâu đời, học phí nhóm cao.", url: "https://www.oberlin.edu" },
+      { name: "Bates College", country: "Mỹ", metric: "≈ 63.000–68.000 USD/năm", note: "Trường khai phóng tại Maine, chi phí toàn phần thuộc nhóm cao nhất.", url: "https://www.bates.edu" },
+      { name: "Colby College", country: "Mỹ", metric: "≈ 63.000–68.000 USD/năm", note: "Một trong ba trường khai phóng danh giá nhất bang Maine.", url: "https://www.colby.edu" },
+      { name: "Franklin & Marshall College", country: "Mỹ", metric: "≈ 65.000–69.000 USD/năm", note: "Trường khai phóng tại Pennsylvania với học phí rất cao.", url: "https://www.fandm.edu" },
+      { name: "Trinity College (Hartford)", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Trường khai phóng tại Connecticut, chi phí toàn phần cao.", url: "https://www.trincoll.edu" },
+      { name: "Pepperdine University", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Khuôn viên ven biển Malibu nổi tiếng, học phí nhóm cao của bờ Tây.", url: "https://www.pepperdine.edu" },
+      { name: "Tulane University", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Trường tư tại New Orleans, học phí tăng nhanh những năm gần đây.", url: "https://tulane.edu" },
+      { name: "Southern Methodist University (SMU)", country: "Mỹ", metric: "≈ 61.000–65.000 USD/năm", note: "Trường tư tại Dallas, mạnh về kinh doanh và luật.", url: "https://www.smu.edu" },
+      { name: "Wellesley College", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Trường nữ sinh khai phóng danh giá nhất nước Mỹ.", url: "https://www.wellesley.edu" },
+      { name: "Scripps College", country: "Mỹ", metric: "≈ 63.000–67.000 USD/năm", note: "Trường nữ sinh thuộc liên minh Claremont tại California.", url: "https://www.scrippscollege.edu" },
+      { name: "Amherst College", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Trường khai phóng top đầu, hỗ trợ tài chính hào phóng dù học phí cao.", url: "https://www.amherst.edu" },
+      { name: "Williams College", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Thường xếp hạng 1 nhóm trường khai phóng Mỹ, học phí cao.", url: "https://www.williams.edu" },
+      { name: "Swarthmore College", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Trường khai phóng tinh hoa gần Philadelphia.", url: "https://www.swarthmore.edu" },
+      { name: "Haverford College", country: "Mỹ", metric: "≈ 65.000–69.000 USD/năm", note: "Trường khai phóng nhỏ, học thuật nghiêm ngặt, học phí nhóm cao nhất.", url: "https://www.haverford.edu" },
+      { name: "Wesleyan University", country: "Mỹ", metric: "≈ 66.000–70.000 USD/năm", note: "Thuộc nhóm học phí cử nhân đắt nhất nước Mỹ.", url: "https://www.wesleyan.edu" },
+      { name: "Harvey Mudd College", country: "Mỹ", metric: "≈ 66.000–70.000 USD/năm", note: "Trường kỹ thuật khai phóng tinh hoa, sinh viên tốt nghiệp lương khởi điểm rất cao.", url: "https://www.hmc.edu" },
+      { name: "Claremont McKenna College", country: "Mỹ", metric: "≈ 64.000–68.000 USD/năm", note: "Mạnh về kinh tế và quản trị, thuộc liên minh Claremont.", url: "https://www.cmc.edu" },
+      { name: "Johns Hopkins University", country: "Mỹ", metric: "≈ 62.000–66.000 USD/năm", note: "Học phí cao, nổi tiếng toàn cầu về y học và nghiên cứu.", url: "https://www.jhu.edu" },
+      { name: "Cornell University", country: "Mỹ", metric: "≈ 65.000–69.000 USD/năm", note: "Các trường thành viên tư thục của Cornell có học phí nhóm cao nhất Ivy League.", url: "https://www.cornell.edu" },
+      { name: "University of Oxford", country: "Anh", metric: "≈ 33.000–48.000 GBP/năm (sinh viên quốc tế)", note: "Học phí quốc tế của Oxford thuộc nhóm cao nhất châu Âu, tùy ngành học.", url: "https://www.ox.ac.uk" },
+      { name: "University of Cambridge", country: "Anh", metric: "≈ 27.000–45.000 GBP/năm (sinh viên quốc tế)", note: "Ngành y và khoa học thực nghiệm có mức phí quốc tế cao nhất.", url: "https://www.cam.ac.uk" },
+      { name: "Imperial College London", country: "Anh", metric: "≈ 36.000–47.000 GBP/năm (sinh viên quốc tế)", note: "Học phí quốc tế cao cộng chi phí sống tại London rất đắt đỏ.", url: "https://www.imperial.ac.uk" },
+      { name: "EHL Hospitality Business School", country: "Thụy Sĩ", metric: "≈ 60.000–70.000 CHF/năm (trọn gói)", note: "Trường quản trị khách sạn số 1 thế giới tại Lausanne, tổng chi phí rất cao.", url: "https://www.ehl.edu" },
+      { name: "Les Roches International School of Hotel Management", country: "Thụy Sĩ", metric: "≈ 45.000–55.000 CHF/năm", note: "Trường khách sạn cao cấp tại vùng núi Thụy Sĩ, phí gồm nhiều dịch vụ nội trú.", url: "https://lesroches.edu" },
+      { name: "IE University", country: "Tây Ban Nha", metric: "≈ 25.000–30.000 EUR/năm", note: "Đại học tư quốc tế tại Madrid và Segovia, học phí cao nhất nhì Tây Ban Nha.", url: "https://www.ie.edu" }
+    ]
+  },
+  {
+    id: "re-nhat",
+    title: "Top trường đại học học phí rẻ nhất thế giới",
+    desc: "Các trường công lập miễn hoặc gần như miễn học phí tại Đức, Pháp, Bắc Âu, Nam Mỹ... và nhóm trường công lập học phí thấp tại châu Á, gồm cả Việt Nam.",
+    source: "Nguồn tham khảo: DAAD (Đức), Campus France, Study in Norway, trang chính thức các trường",
+    note: "Mức phí là khoảng tham khảo năm học 2025–2026; một số nước miễn phí chỉ áp dụng cho chương trình dạy bằng ngôn ngữ bản địa hoặc sinh viên EU/EEA — cần kiểm chứng điều kiện cụ thể.",
+    items: [
+      { name: "LMU Munich", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Chỉ đóng phí học kỳ nhỏ khoảng 100–150 EUR; đại học tổng hợp danh tiếng nhất nước Đức.", url: "https://www.lmu.de" },
+      { name: "Technical University of Munich (TUM)", country: "Đức", metric: "0 EUR/năm với sinh viên EU; ≈ 2.000–6.000 EUR/năm ngoài EU", note: "Từ gần đây TUM thu phí với sinh viên ngoài EU, vẫn rẻ hơn nhiều so với Mỹ – Anh.", url: "https://www.tum.de" },
+      { name: "Heidelberg University", country: "Đức", metric: "0 EUR/năm (trừ bang Baden-Württemberg thu ≈ 1.500 EUR/học kỳ ngoài EU)", note: "Đại học lâu đời nhất nước Đức, mạnh về y học và khoa học đời sống.", url: "https://www.uni-heidelberg.de" },
+      { name: "Humboldt University of Berlin", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Trường của nhiều nhà tư tưởng lớn, nằm giữa trung tâm Berlin.", url: "https://www.hu-berlin.de" },
+      { name: "Free University of Berlin", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Đại học nghiên cứu lớn tại Berlin, nhiều chương trình thạc sĩ tiếng Anh.", url: "https://www.fu-berlin.de" },
+      { name: "RWTH Aachen University", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Trường kỹ thuật lớn nhất nước Đức, liên kết chặt chẽ với công nghiệp.", url: "https://www.rwth-aachen.de" },
+      { name: "University of Bonn", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Mạnh về toán học và kinh tế, quê hương của Beethoven.", url: "https://www.uni-bonn.de" },
+      { name: "University of Hamburg", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Đại học tổng hợp lớn nhất miền bắc nước Đức.", url: "https://www.uni-hamburg.de" },
+      { name: "TU Berlin", country: "Đức", metric: "0 EUR/năm (công lập Đức)", note: "Trường kỹ thuật tại thủ đô, nhiều sinh viên quốc tế.", url: "https://www.tu-berlin.de" },
+      { name: "University of Freiburg", country: "Đức", metric: "0 EUR/năm (trừ phí ngoài EU của bang ≈ 1.500 EUR/học kỳ)", note: "Đại học cổ kính gần rừng Đen, mạnh về môi trường và y học.", url: "https://uni-freiburg.de" },
+      { name: "Sorbonne University", country: "Pháp", metric: "≈ 170–280 EUR/năm bậc cử nhân (phí đăng ký công lập)", note: "Sinh viên ngoài EU có thể phải đóng phí chênh lệch theo chính sách mới, cần kiểm tra từng năm.", url: "https://www.sorbonne-universite.fr" },
+      { name: "Université Paris-Saclay", country: "Pháp", metric: "≈ 170–400 EUR/năm (phí đăng ký công lập)", note: "Cụm đại học nghiên cứu hàng đầu Pháp về khoa học tự nhiên.", url: "https://www.universite-paris-saclay.fr" },
+      { name: "University of Strasbourg", country: "Pháp", metric: "≈ 170–400 EUR/năm (phí đăng ký công lập)", note: "Đại học lớn ở vùng Alsace, nhiều chương trình quốc tế.", url: "https://www.unistra.fr" },
+      { name: "University of Vienna", country: "Áo", metric: "0 EUR/năm với sinh viên EU; ≈ 1.450 EUR/năm ngoài EU", note: "Đại học lớn nhất Áo, tọa lạc tại thủ đô Vienna.", url: "https://www.univie.ac.at" },
+      { name: "TU Wien", country: "Áo", metric: "0 EUR/năm với sinh viên EU; ≈ 1.450 EUR/năm ngoài EU", note: "Trường kỹ thuật hàng đầu nước Áo ngay trung tâm Vienna.", url: "https://www.tuwien.at" },
+      { name: "University of Oslo", country: "Na Uy", metric: "Miễn phí cho EU/EEA; ngoài EU có phí từ 2023", note: "Na Uy thu học phí với sinh viên ngoài EU/EEA từ năm 2023, mức tùy ngành.", url: "https://www.uio.no" },
+      { name: "NTNU (Norwegian University of Science and Technology)", country: "Na Uy", metric: "Miễn phí cho EU/EEA; ngoài EU có phí từ 2023", note: "Trường kỹ thuật lớn nhất Na Uy tại Trondheim.", url: "https://www.ntnu.edu" },
+      { name: "Charles University", country: "Séc", metric: "0 CZK cho chương trình tiếng Séc; chương trình tiếng Anh có phí", note: "Học tiếng Séc 1 năm là cách vào học miễn phí tại trường lâu đời nhất Trung Âu.", url: "https://cuni.cz" },
+      { name: "University of Warsaw", country: "Ba Lan", metric: "0 PLN cho chương trình tiếng Ba Lan (một số đối tượng); tiếng Anh có phí thấp", note: "Đại học lớn nhất Ba Lan giữa thủ đô Warsaw.", url: "https://www.uw.edu.pl" },
+      { name: "AGH University of Krakow", country: "Ba Lan", metric: "Chương trình tiếng Ba Lan miễn phí; tiếng Anh ≈ 2.000–4.000 EUR/năm", note: "Trường kỹ thuật – mỏ – luyện kim hàng đầu Ba Lan.", url: "https://www.agh.edu.pl" },
+      { name: "University of Bologna", country: "Ý", metric: "≈ 0–3.000 EUR/năm theo thu nhập gia đình", note: "Đại học lâu đời nhất thế giới, phí tính theo ISEE và có nhiều suất miễn giảm 100%.", url: "https://www.unibo.it" },
+      { name: "Sapienza University of Rome", country: "Ý", metric: "≈ 300–3.000 EUR/năm theo thu nhập", note: "Một trong những đại học đông sinh viên nhất châu Âu, phí thấp theo diện thu nhập.", url: "https://www.uniroma1.it" },
+      { name: "University of Milan", country: "Ý", metric: "≈ 200–4.000 EUR/năm theo thu nhập", note: "Có học bổng vùng Lombardy hỗ trợ mạnh cho sinh viên quốc tế.", url: "https://www.unimi.it" },
+      { name: "University of Barcelona", country: "Tây Ban Nha", metric: "≈ 1.000–2.500 EUR/năm (công lập)", note: "Học phí công lập Tây Ban Nha thuộc nhóm thấp của Tây Âu.", url: "https://www.ub.edu" },
+      { name: "Complutense University of Madrid", country: "Tây Ban Nha", metric: "≈ 1.000–2.500 EUR/năm (công lập)", note: "Đại học lớn nhất Tây Ban Nha tại thủ đô Madrid.", url: "https://www.ucm.es" },
+      { name: "Eötvös Loránd University (ELTE)", country: "Hungary", metric: "Có học bổng Stipendium Hungaricum miễn 100%", note: "Đại học số 1 Hungary; học bổng chính phủ Hungary bao cả sinh hoạt phí.", url: "https://www.elte.hu" },
+      { name: "National and Kapodistrian University of Athens", country: "Hy Lạp", metric: "0 EUR/năm bậc cử nhân cho sinh viên EU", note: "Đại học lâu đời nhất Hy Lạp hiện đại, cử nhân công lập miễn phí.", url: "https://www.uoa.gr" },
+      { name: "University of Helsinki", country: "Phần Lan", metric: "0 EUR/năm với sinh viên EU/EEA; ngoài EU có phí kèm học bổng", note: "Đại học hàng đầu Phần Lan, nhiều học bổng toàn phần cho sinh viên quốc tế.", url: "https://www.helsinki.fi" },
+      { name: "University of Iceland", country: "Iceland", metric: "0 ISK học phí; chỉ phí đăng ký ≈ 75.000 ISK/năm", note: "Đại học quốc gia Iceland không thu học phí với mọi quốc tịch.", url: "https://www.hi.is" },
+      { name: "University of Ljubljana", country: "Slovenia", metric: "0 EUR/năm với sinh viên EU và một số nước đối tác", note: "Đại học lớn nhất Slovenia, nhiều chương trình tiếng Anh giá thấp.", url: "https://www.uni-lj.si" },
+      { name: "National Taiwan University (NTU)", country: "Đài Loan", metric: "≈ 1.800–3.600 USD/năm", note: "Đại học số 1 Đài Loan với học phí thấp và nhiều học bổng cho sinh viên Việt Nam.", url: "https://www.ntu.edu.tw" },
+      { name: "National Tsing Hua University", country: "Đài Loan", metric: "≈ 1.800–3.200 USD/năm", note: "Mạnh về kỹ thuật và khoa học, nằm tại thành phố Tân Trúc.", url: "https://www.nthu.edu.tw" },
+      { name: "Tsinghua University", country: "Trung Quốc", metric: "≈ 3.500–6.000 USD/năm (sinh viên quốc tế)", note: "Học phí quốc tế thấp so với danh tiếng, lại có học bổng chính phủ CSC toàn phần.", url: "https://www.tsinghua.edu.cn" },
+      { name: "Peking University", country: "Trung Quốc", metric: "≈ 3.500–5.500 USD/năm (sinh viên quốc tế)", note: "Nhiều suất học bổng toàn phần cho sinh viên quốc tế qua chương trình CSC.", url: "https://www.pku.edu.cn" },
+      { name: "University of Malaya", country: "Malaysia", metric: "≈ 2.500–6.000 USD/năm (sinh viên quốc tế)", note: "Đại học số 1 Malaysia, giảng dạy tiếng Anh, chi phí sinh hoạt thấp.", url: "https://www.um.edu.my" },
+      { name: "Universiti Putra Malaysia", country: "Malaysia", metric: "≈ 2.000–5.000 USD/năm (sinh viên quốc tế)", note: "Mạnh về nông nghiệp và khoa học, học phí công lập rất cạnh tranh.", url: "https://www.upm.edu.my" },
+      { name: "National Autonomous University of Mexico (UNAM)", country: "Mexico", metric: "Gần như miễn phí (phí tượng trưng vài peso/năm)", note: "Đại học công lập lớn nhất Mỹ Latinh, học phí mang tính tượng trưng.", url: "https://www.unam.mx" },
+      { name: "University of Buenos Aires (UBA)", country: "Argentina", metric: "0 ARS bậc cử nhân (miễn phí cho mọi quốc tịch)", note: "Đại học công lập miễn phí nổi tiếng của Argentina, không thi đầu vào khốc liệt.", url: "https://www.uba.ar" },
+      { name: "University of São Paulo (USP)", country: "Brazil", metric: "0 BRL (công lập miễn phí)", note: "Đại học tốt nhất Brazil và Nam Mỹ, hoàn toàn miễn học phí.", url: "https://www.usp.br" },
+      { name: "University of Campinas (Unicamp)", country: "Brazil", metric: "0 BRL (công lập miễn phí)", note: "Trường nghiên cứu mạnh của bang São Paulo, miễn phí toàn bộ bậc học.", url: "https://www.unicamp.br" },
+      { name: "University of Delhi", country: "Ấn Độ", metric: "≈ 200–1.000 USD/năm", note: "Hệ thống trường thành viên lớn với học phí công lập rất thấp.", url: "https://www.du.ac.in" },
+      { name: "IIT Bombay", country: "Ấn Độ", metric: "≈ 2.500–3.000 USD/năm", note: "Học phí thấp nhưng đầu vào JEE thuộc loại khó nhất thế giới.", url: "https://www.iitb.ac.in" },
+      { name: "Istanbul University", country: "Thổ Nhĩ Kỳ", metric: "≈ 500–2.500 USD/năm (sinh viên quốc tế)", note: "Đại học lâu đời của Thổ Nhĩ Kỳ, có học bổng Türkiye Burslari toàn phần.", url: "https://www.istanbul.edu.tr" },
+      { name: "Middle East Technical University (METU)", country: "Thổ Nhĩ Kỳ", metric: "≈ 1.500–3.000 USD/năm (sinh viên quốc tế)", note: "Trường kỹ thuật dạy bằng tiếng Anh hàng đầu Thổ Nhĩ Kỳ.", url: "https://www.metu.edu.tr" },
+      { name: "Đại học Quốc gia Hà Nội (VNU)", country: "Việt Nam", metric: "≈ 15–35 triệu VND/năm (chương trình chuẩn công lập)", note: "Hệ thống đại học công lập lớn nhất Việt Nam, học phí theo quy định nhà nước.", url: "https://www.vnu.edu.vn" },
+      { name: "Đại học Bách khoa Hà Nội (HUST)", country: "Việt Nam", metric: "≈ 25–35 triệu VND/năm (chương trình chuẩn)", note: "Trường kỹ thuật số 1 Việt Nam, chương trình tiên tiến có mức phí cao hơn.", url: "https://hust.edu.vn" },
+      { name: "Đại học Quốc gia TP.HCM (VNU-HCM)", country: "Việt Nam", metric: "≈ 15–40 triệu VND/năm tùy trường thành viên", note: "Cụm đại học công lập lớn nhất phía Nam với nhiều trường thành viên.", url: "https://vnuhcm.edu.vn" },
+      { name: "Trường Đại học Y Hà Nội", country: "Việt Nam", metric: "≈ 20–30 triệu VND/năm (ngành y công lập)", note: "Trường y danh giá nhất Việt Nam, điểm chuẩn thuộc nhóm cao nhất cả nước.", url: "https://hmu.edu.vn" },
+      { name: "Trường Đại học Kinh tế Quốc dân (NEU)", country: "Việt Nam", metric: "≈ 18–25 triệu VND/năm (chương trình chuẩn)", note: "Trường kinh tế hàng đầu miền Bắc, học phí công lập ở mức trung bình thấp.", url: "https://www.neu.edu.vn" },
+      { name: "Học viện Nông nghiệp Việt Nam", country: "Việt Nam", metric: "≈ 12–20 triệu VND/năm", note: "Học phí thuộc nhóm thấp nhất trong các trường đại học công lập Việt Nam.", url: "https://vnua.edu.vn" }
+    ]
+  },
+  {
+    id: "diem-cao",
+    title: "Top trường đại học khó vào / điểm đầu vào cao nhất thế giới",
+    desc: "Những trường có tỉ lệ trúng tuyển thấp nhất hoặc kỳ thi đầu vào khốc liệt nhất — trúng tuyển được coi là thành tích lớn.",
+    source: "Nguồn tham khảo: số liệu tuyển sinh chính thức các trường, Common Data Set, QS/THE",
+    note: "Tỉ lệ trúng tuyển là khoảng tham khảo các năm gần đây (2024–2026) và thay đổi theo từng khóa, từng ngành.",
+    items: [
+      { name: "Harvard University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 3–4%", note: "Hồ sơ xét toàn diện: điểm số, hoạt động ngoại khóa và bài luận đều phải xuất sắc.", url: "https://www.harvard.edu" },
+      { name: "Stanford University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 3–4%", note: "Thuộc nhóm chọn lọc nhất thế giới, cạnh tranh đặc biệt ở ngành máy tính.", url: "https://www.stanford.edu" },
+      { name: "California Institute of Technology (Caltech)", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 3%", note: "Quy mô tuyển rất nhỏ, yêu cầu năng lực toán – khoa học ở mức cực cao.", url: "https://www.caltech.edu" },
+      { name: "Columbia University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 4%", note: "Hồ sơ toàn nước Mỹ đổ về New York khiến tỉ lệ chọi luôn ở mức kỷ lục.", url: "https://www.columbia.edu" },
+      { name: "Massachusetts Institute of Technology (MIT)", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 4–5%", note: "Sinh viên quốc tế còn cạnh tranh hơn, tỉ lệ trúng tuyển thấp hơn mức chung.", url: "https://web.mit.edu" },
+      { name: "Princeton University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 4–5%", note: "Chỉ tiêu mỗi khóa khoảng 1.300 sinh viên cho hàng chục nghìn hồ sơ.", url: "https://www.princeton.edu" },
+      { name: "Yale University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 4–5%", note: "Nổi tiếng với vòng phỏng vấn và bài luận rất khắt khe.", url: "https://www.yale.edu" },
+      { name: "Brown University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 5%", note: "Số hồ sơ tăng mạnh nhiều năm khiến tỉ lệ trúng tuyển liên tục giảm.", url: "https://www.brown.edu" },
+      { name: "University of Chicago", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 5%", note: "Bài luận sáng tạo độc đáo là cửa ải nổi tiếng của trường này.", url: "https://www.uchicago.edu" },
+      { name: "Dartmouth College", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 5–6%", note: "Trường Ivy League nhỏ nhất nên chỉ tiêu tuyển sinh rất hạn chế.", url: "https://home.dartmouth.edu" },
+      { name: "University of Pennsylvania", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 6%", note: "Trường kinh doanh Wharton bậc cử nhân có tỉ lệ chọi cao hơn mặt bằng chung.", url: "https://www.upenn.edu" },
+      { name: "Duke University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 6%", note: "Hồ sơ nộp vào Duke thường xuyên vượt 50.000 mỗi năm.", url: "https://www.duke.edu" },
+      { name: "Vanderbilt University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 6%", note: "Điểm SAT/ACT trung bình của sinh viên trúng tuyển thuộc nhóm cao nhất nước Mỹ.", url: "https://www.vanderbilt.edu" },
+      { name: "Rice University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 8%", note: "Quy mô lớp nhỏ và học thuật mạnh khiến đầu vào ngày càng khó.", url: "https://www.rice.edu" },
+      { name: "Northwestern University", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 7%", note: "Các ngành báo chí và truyền thông có mức cạnh tranh riêng rất cao.", url: "https://www.northwestern.edu" },
+      { name: "Minerva University", country: "Mỹ (toàn cầu)", metric: "Tỉ lệ trúng tuyển ≈ 1–2%", note: "Mô hình học luân chuyển 7 thành phố thế giới, tuyển chọn cực kỳ gắt gao.", url: "https://www.minerva.edu" },
+      { name: "Curtis Institute of Music", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 4%; miễn học phí 100%", note: "Nhạc viện tinh hoa tại Philadelphia, thi tuyển trực tiếp trình độ biểu diễn.", url: "https://www.curtis.edu" },
+      { name: "The Juilliard School", country: "Mỹ", metric: "Tỉ lệ trúng tuyển ≈ 8–10%", note: "Trường nghệ thuật biểu diễn số 1 nước Mỹ, thi tuyển bằng trình diễn trực tiếp.", url: "https://www.juilliard.edu" },
+      { name: "University of Oxford", country: "Anh", metric: "Tỉ lệ trúng tuyển ≈ 14–17% (nhiều ngành dưới 10%)", note: "Thí sinh phải qua bài thi đầu vào riêng và phỏng vấn học thuật trực tiếp với giảng viên.", url: "https://www.ox.ac.uk" },
+      { name: "University of Cambridge", country: "Anh", metric: "Tỉ lệ trúng tuyển ≈ 18–21% (ngành hot thấp hơn nhiều)", note: "Yêu cầu điểm A-level/IB rất cao kèm kỳ thi và phỏng vấn chuyên ngành.", url: "https://www.cam.ac.uk" },
+      { name: "Imperial College London", country: "Anh", metric: "Tỉ lệ trúng tuyển ≈ 12–15%", note: "Ngành máy tính và kỹ thuật của Imperial có tỉ lệ chọi thuộc nhóm cao nhất nước Anh.", url: "https://www.imperial.ac.uk" },
+      { name: "London School of Economics (LSE)", country: "Anh", metric: "Tỉ lệ trúng tuyển ≈ 12%", note: "Số hồ sơ quốc tế khổng lồ cho các ngành kinh tế, tài chính và luật.", url: "https://www.lse.ac.uk" },
+      { name: "ETH Zurich", country: "Thụy Sĩ", metric: "Thi đầu vào riêng cho nhiều hồ sơ quốc tế", note: "Bằng tốt nghiệp nhiều nước phải qua kỳ thi tuyển giảm tải hoặc toàn phần rất khó.", url: "https://ethz.ch" },
+      { name: "École Polytechnique", country: "Pháp", metric: "Qua kỳ thi concours toàn quốc cực khó", note: "Sinh viên Pháp phải học 2 năm dự bị (CPGE) rồi thi concours chỉ lấy vài trăm người.", url: "https://www.polytechnique.edu" },
+      { name: "National University of Singapore (NUS)", country: "Singapore", metric: "Tỉ lệ trúng tuyển ≈ 5–10%", note: "Ngành y, luật và máy tính yêu cầu điểm gần như tuyệt đối theo chuẩn A-level Singapore.", url: "https://www.nus.edu.sg" },
+      { name: "Nanyang Technological University (NTU)", country: "Singapore", metric: "Điểm chuẩn thuộc top đầu Singapore", note: "Cạnh tranh trực tiếp với NUS, đặc biệt ở các ngành kỹ thuật và kinh doanh.", url: "https://www.ntu.edu.sg" },
+      { name: "The University of Hong Kong (HKU)", country: "Hồng Kông", metric: "Ngành y – nha khoa lấy điểm cao nhất Hồng Kông", note: "Học sinh trúng tuyển y khoa HKU thường đạt điểm DSE gần tối đa.", url: "https://www.hku.hk" },
+      { name: "Tsinghua University", country: "Trung Quốc", metric: "Gaokao: chỉ lấy ≈ 0,01–0,1% thí sinh cao điểm nhất mỗi tỉnh", note: "Thí sinh Trung Quốc phải thuộc nhóm điểm cao nhất tỉnh trong kỳ thi gaokao.", url: "https://www.tsinghua.edu.cn" },
+      { name: "Peking University", country: "Trung Quốc", metric: "Gaokao: top điểm cao nhất toàn quốc", note: "Cùng Thanh Hoa tạo thành cặp trường khó vào nhất Trung Quốc.", url: "https://www.pku.edu.cn" },
+      { name: "Fudan University", country: "Trung Quốc", metric: "Gaokao: nhóm điểm cao nhất các tỉnh lớn", note: "Trường tổng hợp tại Thượng Hải, đặc biệt cạnh tranh ở ngành y và kinh tế.", url: "https://www.fudan.edu.cn" },
+      { name: "Shanghai Jiao Tong University", country: "Trung Quốc", metric: "Gaokao: top điểm cao nhất toàn quốc", note: "Mạnh về kỹ thuật và y học, điểm chuẩn luôn ở nhóm đầu Trung Quốc.", url: "https://www.sjtu.edu.cn" },
+      { name: "Zhejiang University", country: "Trung Quốc", metric: "Gaokao: điểm chuẩn nhóm cao nhất Trung Quốc", note: "Đại học tổng hợp khổng lồ tại Hàng Châu với điểm đầu vào rất cao.", url: "https://www.zju.edu.cn" },
+      { name: "IIT Bombay", country: "Ấn Độ", metric: "JEE Advanced: tỉ lệ trúng tuyển < 1%", note: "Hơn 1 triệu thí sinh thi JEE mỗi năm để tranh khoảng 17.000 ghế toàn hệ IIT.", url: "https://www.iitb.ac.in" },
+      { name: "IIT Delhi", country: "Ấn Độ", metric: "JEE Advanced: chỉ lấy top vài nghìn thí sinh", note: "Ngành máy tính của IIT Delhi yêu cầu thứ hạng JEE thuộc nhóm vài trăm đầu.", url: "https://home.iitd.ac.in" },
+      { name: "AIIMS New Delhi", country: "Ấn Độ", metric: "NEET: tỉ lệ trúng tuyển ngành y < 0,1%", note: "Trường y số 1 Ấn Độ, hàng triệu thí sinh NEET tranh vài trăm ghế.", url: "https://www.aiims.edu" },
+      { name: "Seoul National University", country: "Hàn Quốc", metric: "Đầu vào qua Suneung (CSAT) khó nhất Hàn Quốc", note: "Ngành y của SNU là đích đến của nhóm học sinh giỏi nhất nước này.", url: "https://www.snu.ac.kr" },
+      { name: "KAIST", country: "Hàn Quốc", metric: "Tuyển chọn học sinh khoa học tinh hoa toàn quốc", note: "Viện khoa học – công nghệ chuyên tuyển học sinh giỏi toán và khoa học tự nhiên.", url: "https://www.kaist.ac.kr" },
+      { name: "Yonsei University", country: "Hàn Quốc", metric: "Thuộc nhóm SKY — điểm chuẩn cao nhất Hàn Quốc", note: "Cùng SNU và Korea University tạo thành bộ ba trường mơ ước của học sinh Hàn.", url: "https://www.yonsei.ac.kr" },
+      { name: "University of Tokyo", country: "Nhật Bản", metric: "Kỳ thi đầu vào riêng khó nhất Nhật Bản", note: "Thí sinh phải qua kỳ thi chung toàn quốc rồi kỳ thi riêng rất nặng của trường.", url: "https://www.u-tokyo.ac.jp" },
+      { name: "Kyoto University", country: "Nhật Bản", metric: "Kỳ thi riêng nổi tiếng khó và khác biệt", note: "Đề thi của Kyoto được coi là thử thách nhất cho học sinh giỏi Nhật Bản.", url: "https://www.kyoto-u.ac.jp" },
+      { name: "University of Waterloo", country: "Canada", metric: "Ngành khoa học máy tính tỉ lệ trúng tuyển ≈ 4–5%", note: "Chương trình co-op máy tính của Waterloo cạnh tranh ngang nhiều trường Ivy League.", url: "https://uwaterloo.ca" }
+    ]
+  },
+  {
+    id: "nhieu-nganh",
+    title: "Top trường cao đẳng, đại học nhiều ngành học nhất thế giới",
+    desc: "Các đại học tổng hợp khổng lồ với hàng trăm chương trình đào tạo và quy mô sinh viên lớn nhất hành tinh, gồm cả hệ đại học mở.",
+    source: "Nguồn tham khảo: trang chính thức và báo cáo thường niên các trường, Wikipedia/UNESCO thống kê quy mô đào tạo",
+    note: "Số sinh viên và chương trình là khoảng tham khảo, tính cả hệ đào tạo từ xa/đại học mở ở những trường có mô hình này.",
+    items: [
+      { name: "Indira Gandhi National Open University (IGNOU)", country: "Ấn Độ", metric: "≈ 3–4 triệu học viên, 300+ chương trình", note: "Đại học mở lớn nhất thế giới với hệ thống trung tâm học tập khắp Ấn Độ và quốc tế.", url: "https://www.ignou.ac.in" },
+      { name: "Anadolu University", country: "Thổ Nhĩ Kỳ", metric: "≈ 1–2 triệu sinh viên hệ mở, 100+ chương trình", note: "Tiên phong đào tạo từ xa tại châu Âu với khoa giáo dục mở khổng lồ.", url: "https://www.anadolu.edu.tr" },
+      { name: "National University of Bangladesh", country: "Bangladesh", metric: "≈ 2 triệu sinh viên qua 2.000+ trường thành viên", note: "Hệ thống đại học liên kết lớn nhất Bangladesh, quản lý hàng nghìn cao đẳng thành viên.", url: "https://www.nu.ac.bd" },
+      { name: "Allama Iqbal Open University", country: "Pakistan", metric: "≈ 1 triệu học viên, hàng trăm chương trình", note: "Đại học mở lâu đời của Pakistan phục vụ người học trên toàn quốc.", url: "https://www.aiou.edu.pk" },
+      { name: "Open University of China", country: "Trung Quốc", metric: "≈ 4–5 triệu người học trong hệ thống", note: "Hệ thống đại học mở toàn quốc của Trung Quốc với mạng lưới chi nhánh khắp các tỉnh.", url: "https://www.ouchn.edu.cn" },
+      { name: "Tribhuvan University", country: "Nepal", metric: "≈ 400.000+ sinh viên, 1.000+ trường thành viên", note: "Đại học lâu đời và lớn nhất Nepal, đào tạo phần lớn nhân lực cả nước.", url: "https://tu.edu.np" },
+      { name: "National Autonomous University of Mexico (UNAM)", country: "Mexico", metric: "≈ 350.000–370.000 sinh viên, 130+ ngành cử nhân", note: "Đại học lớn nhất Mỹ Latinh với 15 trường thành viên và hệ thống bảo tàng, viện nghiên cứu đồ sộ.", url: "https://www.unam.mx" },
+      { name: "University of Buenos Aires (UBA)", country: "Argentina", metric: "≈ 300.000+ sinh viên, 13 khoa lớn", note: "Miễn học phí và không giới hạn đầu vào bậc cử nhân, quy mô bậc nhất Nam Mỹ.", url: "https://www.uba.ar" },
+      { name: "University of Mumbai", country: "Ấn Độ", metric: "≈ 500.000+ sinh viên qua trường thành viên", note: "Một trong những hệ đại học liên kết lớn nhất thế giới tại bang Maharashtra.", url: "https://mu.ac.in" },
+      { name: "Savitribai Phule Pune University", country: "Ấn Độ", metric: "≈ 600.000+ sinh viên qua 800+ đơn vị thành viên", note: "Được mệnh danh là 'Oxford của phương Đông' với mạng lưới cao đẳng khổng lồ.", url: "https://www.unipune.ac.in" },
+      { name: "University of Calcutta", country: "Ấn Độ", metric: "≈ 150.000+ sinh viên, 150+ trường thành viên", note: "Đại học hiện đại đầu tiên của Ấn Độ với hệ thống liên kết rộng khắp Tây Bengal.", url: "https://www.caluniv.ac.in" },
+      { name: "University of Madras", country: "Ấn Độ", metric: "≈ 100.000+ sinh viên, 100+ trường thành viên", note: "Một trong ba đại học lâu đời nhất Ấn Độ tại thành phố Chennai.", url: "https://www.unom.ac.in" },
+      { name: "Osmania University", country: "Ấn Độ", metric: "≈ 300.000+ sinh viên trong hệ thống", note: "Đại học bang lớn tại Hyderabad với hàng trăm cao đẳng trực thuộc.", url: "https://www.osmania.ac.in" },
+      { name: "Cairo University", country: "Ai Cập", metric: "≈ 250.000+ sinh viên, 25+ khoa và viện", note: "Đại học lớn nhất Ai Cập và là trung tâm đào tạo lớn của thế giới Ả Rập.", url: "https://cu.edu.eg" },
+      { name: "University of São Paulo (USP)", country: "Brazil", metric: "≈ 90.000–100.000 sinh viên, 300+ chương trình", note: "Đại học nghiên cứu số 1 Brazil, đào tạo miễn phí nhiều lĩnh vực từ y đến nghệ thuật.", url: "https://www.usp.br" },
+      { name: "Lomonosov Moscow State University", country: "Nga", metric: "≈ 40.000–50.000 sinh viên, 40+ khoa", note: "Đại học danh giá nhất nước Nga với tòa nhà chính biểu tượng tại Moscow.", url: "https://www.msu.ru" },
+      { name: "Arizona State University", country: "Mỹ", metric: "≈ 140.000+ sinh viên (gồm online), 350+ ngành cử nhân", note: "Đại học công lập đông sinh viên nhất nước Mỹ và dẫn đầu về đổi mới sáng tạo.", url: "https://www.asu.edu" },
+      { name: "Southern New Hampshire University", country: "Mỹ", metric: "≈ 180.000+ học viên trực tuyến", note: "Trường phi lợi nhuận có lượng sinh viên online lớn nhất nước Mỹ.", url: "https://www.snhu.edu" },
+      { name: "University of Phoenix", country: "Mỹ", metric: "≈ 80.000–100.000 học viên người lớn", note: "Đơn vị tiên phong đào tạo trực tuyến cho người đi làm tại Mỹ.", url: "https://www.phoenix.edu" },
+      { name: "University of Central Florida", country: "Mỹ", metric: "≈ 68.000+ sinh viên, 230+ chương trình", note: "Một trong những đại học đông sinh viên nhất nước Mỹ tại Orlando.", url: "https://www.ucf.edu" },
+      { name: "Texas A&M University", country: "Mỹ", metric: "≈ 77.000+ sinh viên, 130+ lĩnh vực đào tạo", note: "Đại học cấp đất (land-grant) lớn với truyền thống quân sự và kỹ thuật mạnh.", url: "https://www.tamu.edu" },
+      { name: "Ohio State University", country: "Mỹ", metric: "≈ 65.000+ sinh viên tại Columbus", note: "Đại học công lập tổng hợp khổng lồ, mạnh từ y học đến nông nghiệp.", url: "https://www.osu.edu" },
+      { name: "The Open University", country: "Anh", metric: "≈ 150.000–200.000 học viên, 200+ chương trình", note: "Đại học mở lớn nhất châu Âu, học hoàn toàn từ xa trụ sở tại Milton Keynes.", url: "https://www.open.ac.uk" },
+      { name: "Universitas Terbuka", country: "Indonesia", metric: "≈ 400.000–600.000 sinh viên hệ mở", note: "Đại học mở quốc gia của Indonesia phục vụ người học khắp quần đảo.", url: "https://www.ut.ac.id" },
+      { name: "Korea National Open University", country: "Hàn Quốc", metric: "≈ 100.000+ sinh viên hệ mở", note: "Đại học từ xa quốc gia của Hàn Quốc với mạng lưới trung tâm toàn quốc.", url: "https://www.knou.ac.kr" },
+      { name: "University of Toronto", country: "Canada", metric: "≈ 100.000 sinh viên, 700+ chương trình cử nhân", note: "Đại học nhiều ngành nhất Canada với 3 cơ sở và hệ thống 7 trường thành viên.", url: "https://www.utoronto.ca" },
+      { name: "University of Tehran", country: "Iran", metric: "≈ 50.000+ sinh viên, 100+ khoa và viện", note: "Đại học lâu đời và tổng hợp lớn nhất Iran.", url: "https://ut.ac.ir" },
+      { name: "Istanbul University", country: "Thổ Nhĩ Kỳ", metric: "≈ 70.000+ sinh viên, 17 khoa", note: "Đại học cổ nhất Thổ Nhĩ Kỳ với lịch sử từ năm 1453.", url: "https://www.istanbul.edu.tr" },
+      { name: "University of Belgrade", country: "Serbia", metric: "≈ 90.000+ sinh viên, 31 khoa", note: "Đại học lớn nhất vùng Balkan, đào tạo phần lớn nhân lực trình độ cao của Serbia.", url: "https://www.bg.ac.rs" },
+      { name: "University of Indonesia", country: "Indonesia", metric: "≈ 50.000+ sinh viên, 14 khoa", note: "Đại học hàng đầu Indonesia với khuôn viên xanh rộng lớn tại Depok.", url: "https://www.ui.ac.id" },
+      { name: "Universitas Gadjah Mada", country: "Indonesia", metric: "≈ 55.000+ sinh viên, 18 khoa", note: "Đại học quốc gia danh giá tại Yogyakarta với đầy đủ các khối ngành.", url: "https://ugm.ac.id" },
+      { name: "University of the Philippines", country: "Philippines", metric: "≈ 60.000+ sinh viên trong hệ thống toàn quốc", note: "Hệ thống đại học quốc gia gồm nhiều cơ sở thành viên trên cả nước.", url: "https://up.edu.ph" },
+      { name: "University of Dhaka", country: "Bangladesh", metric: "≈ 40.000+ sinh viên, 80+ khoa và viện", note: "Đại học lâu đời nhất Bangladesh, được gọi là 'Oxford của phương Đông'.", url: "https://www.du.ac.bd" },
+      { name: "Đại học Quốc gia Hà Nội (VNU)", country: "Việt Nam", metric: "≈ 50.000+ sinh viên, hàng trăm chương trình đào tạo", note: "Hệ thống gồm nhiều trường thành viên và khoa trực thuộc, đào tạo đầy đủ các khối ngành.", url: "https://www.vnu.edu.vn" },
+      { name: "Đại học Quốc gia TP.HCM (VNU-HCM)", country: "Việt Nam", metric: "≈ 90.000+ sinh viên trong toàn hệ thống", note: "Cụm đại học lớn nhất Việt Nam với 8 trường thành viên và khu đô thị đại học tại Thủ Đức.", url: "https://vnuhcm.edu.vn" },
+      { name: "Trường Đại học Cần Thơ", country: "Việt Nam", metric: "≈ 45.000+ sinh viên, 100+ chương trình", note: "Đại học tổng hợp lớn nhất Đồng bằng sông Cửu Long, mạnh về nông nghiệp và thủy sản.", url: "https://www.ctu.edu.vn" },
+      { name: "University of Warsaw", country: "Ba Lan", metric: "≈ 45.000+ sinh viên, 25 khoa", note: "Đại học tổng hợp lớn nhất Ba Lan với đầy đủ ngành khoa học và nhân văn.", url: "https://www.uw.edu.pl" },
+      { name: "National University of Singapore (NUS)", country: "Singapore", metric: "≈ 40.000+ sinh viên, 17 trường và khoa thành viên", note: "Mô hình đại học tổng hợp kiểu Mỹ với đủ ngành từ y, luật đến âm nhạc.", url: "https://www.nus.edu.sg" }
+    ]
+  }
+];
+
+// ============================================================
+// Dữ liệu: Trường tiêu biểu Việt Nam + Mục tuyển dụng
+// Điểm chuẩn và học phí chỉ ghi KHOẢNG tham khảo năm 2025,
+// cần đối chiếu lại với đề án tuyển sinh chính thức của trường.
+// ============================================================
+
+const VN_SCHOOLS = [
+  {
+    name: "Đại học Bách khoa Hà Nội",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Kỹ thuật máy tính, Khoa học máy tính, Kỹ thuật điện – điện tử, Tự động hóa, Cơ khí, Công nghệ thông tin",
+    score: "Khoảng 24 – 28,5 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 24 – 35 triệu đồng/năm (chương trình chuẩn)",
+    scholarship: "Học bổng khuyến khích học tập và học bổng doanh nghiệp (Samsung, Viettel...) cho sinh viên giỏi",
+    support: "Ký túc xá trong khuôn viên, trung tâm hỗ trợ việc làm, liên kết thực tập với nhiều tập đoàn công nghệ lớn",
+    url: "https://tuyensinh.hust.edu.vn"
+  },
+  {
+    name: "Đại học Công nghệ – Đại học Quốc gia Hà Nội (UET)",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Công nghệ thông tin, Khoa học máy tính, Kỹ thuật máy tính, Điện tử – viễn thông, Cơ điện tử, Hệ thống nhúng và IoT",
+    score: "Khoảng 25 – 28,5 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 20 – 31 triệu đồng/năm",
+    scholarship: "Học bổng của ĐHQG Hà Nội và học bổng đối tác Nhật Bản, Hàn Quốc cho sinh viên xuất sắc",
+    support: "Phòng thí nghiệm với doanh nghiệp (Samsung, Toshiba), hỗ trợ thực tập và giới thiệu việc làm sau tốt nghiệp",
+    url: "https://uet.vnu.edu.vn"
+  },
+  {
+    name: "Đại học Ngoại thương (FTU)",
+    type: "Đại học",
+    city: "Hà Nội (cơ sở chính), TP.HCM, Quảng Ninh",
+    majors: "Kinh tế đối ngoại, Kinh doanh quốc tế, Tài chính – ngân hàng, Kế toán, Ngôn ngữ thương mại",
+    score: "Khoảng 26 – 28,5 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 22 – 45 triệu đồng/năm (tùy chương trình)",
+    scholarship: "Học bổng khuyến khích học tập và học bổng của các tổ chức, doanh nghiệp đối tác trong và ngoài nước",
+    support: "Mạng lưới cựu sinh viên mạnh, ngày hội việc làm thường niên, liên kết chặt với doanh nghiệp xuất nhập khẩu và ngân hàng",
+    url: "https://www.ftu.edu.vn"
+  },
+  {
+    name: "Đại học Kinh tế Quốc dân (NEU)",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Kinh tế, Quản trị kinh doanh, Marketing, Tài chính – ngân hàng, Kế toán, Thương mại điện tử",
+    score: "Khoảng 26 – 28 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 20 – 25 triệu đồng/năm (chương trình chuẩn)",
+    scholarship: "Học bổng khuyến khích học tập theo kỳ và quỹ học bổng cựu sinh viên, doanh nghiệp",
+    support: "Trung tâm hướng nghiệp – việc làm, ký túc xá, nhiều câu lạc bộ và chương trình thực tập doanh nghiệp",
+    url: "https://www.neu.edu.vn"
+  },
+  {
+    name: "Học viện Công nghệ Bưu chính Viễn thông (PTIT)",
+    type: "Đại học",
+    city: "Hà Nội, TP.HCM",
+    majors: "Công nghệ thông tin, Kỹ thuật điện tử viễn thông, An toàn thông tin, Trí tuệ nhân tạo vạn vật (AIoT), Kỹ thuật dữ liệu",
+    score: "Khoảng 24 – 27,7 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 27 – 38 triệu đồng/năm",
+    scholarship: "Học bổng của VNPT và các doanh nghiệp viễn thông – công nghệ cho sinh viên có thành tích tốt",
+    support: "Liên kết đào tạo – thực tập với VNPT, Viettel, FPT; sinh viên được ưu tiên tuyển dụng vào hệ sinh thái bưu chính viễn thông",
+    url: "https://ptit.edu.vn"
+  },
+  {
+    name: "Đại học Sư phạm Kỹ thuật TP.HCM (HCMUTE)",
+    type: "Đại học",
+    city: "TP.HCM",
+    majors: "Hệ thống nhúng và IoT, Công nghệ kỹ thuật điện – điện tử, Cơ điện tử, Công nghệ thông tin, Tự động hóa",
+    score: "Khoảng 23 – 27,3 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 18 – 27 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập và học bổng doanh nghiệp Nhật Bản, Hàn Quốc, Đức cho sinh viên kỹ thuật",
+    support: "Xưởng thực hành và phòng lab hiện đại, liên kết doanh nghiệp FDI, tỷ lệ sinh viên có việc làm sau tốt nghiệp cao",
+    url: "https://hcmute.edu.vn"
+  },
+  {
+    name: "Đại học Bách khoa – ĐHQG TP.HCM (HCMUT)",
+    type: "Đại học",
+    city: "TP.HCM",
+    majors: "Khoa học máy tính, Kỹ thuật máy tính, Điện – điện tử, Hóa học, Xây dựng, Cơ khí",
+    score: "Khoảng 24 – 28 điểm (tham khảo 2025, tùy ngành, xét kết hợp nhiều tiêu chí)",
+    tuition: "Khoảng 27 – 32 triệu đồng/năm (chương trình chuẩn)",
+    scholarship: "Học bổng ĐHQG TP.HCM và học bổng đối tác doanh nghiệp, tổ chức quốc tế",
+    support: "Ký túc xá ĐHQG, trung tâm hỗ trợ sinh viên, mạng lưới doanh nghiệp đối tác lớn tại khu vực phía Nam",
+    url: "https://www.hcmut.edu.vn"
+  },
+  {
+    name: "Đại học Y Hà Nội",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Y khoa, Răng – Hàm – Mặt, Y học cổ truyền, Điều dưỡng, Kỹ thuật xét nghiệm y học",
+    score: "Khoảng 24 – 28,7 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 21 – 28 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập và hỗ trợ sinh viên có hoàn cảnh khó khăn theo quy định",
+    support: "Thực hành tại các bệnh viện tuyến trung ương, ký túc xá, sinh viên ra trường được bệnh viện và cơ sở y tế ưu tiên tuyển dụng",
+    url: "https://hmu.edu.vn"
+  },
+  {
+    name: "Đại học Kinh tế TP.HCM (UEH)",
+    type: "Đại học",
+    city: "TP.HCM",
+    majors: "Kinh doanh quốc tế, Marketing, Tài chính – ngân hàng, Kế toán, Logistics, Kinh doanh số",
+    score: "Khoảng 24 – 27 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 22 – 31 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập và quỹ học bổng doanh nghiệp, cựu sinh viên UEH",
+    support: "Viện đổi mới sáng tạo, ngày hội việc làm, liên kết thực tập với doanh nghiệp tại TP.HCM",
+    url: "https://www.ueh.edu.vn"
+  },
+  {
+    name: "Học viện Tài chính",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Tài chính – ngân hàng, Kế toán, Kiểm toán, Quản trị kinh doanh, Hệ thống thông tin quản lý",
+    score: "Khoảng 25 – 26,8 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 20 – 25 triệu đồng/năm (chương trình chuẩn)",
+    scholarship: "Học bổng khuyến khích học tập và học bổng của Bộ Tài chính, các ngân hàng, công ty kiểm toán",
+    support: "Liên kết với ngân hàng, công ty chứng khoán và hãng kiểm toán; hỗ trợ thực tập và việc làm trong khối tài chính",
+    url: "https://hvtc.edu.vn"
+  },
+  {
+    name: "Học viện Ngân hàng",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Tài chính – ngân hàng, Kế toán, Quản trị kinh doanh, Công nghệ thông tin, Kinh doanh quốc tế",
+    score: "Khoảng 25 – 27 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 22 – 27 triệu đồng/năm",
+    scholarship: "Học bổng của Ngân hàng Nhà nước và các ngân hàng thương mại cho sinh viên giỏi",
+    support: "Sinh viên được ưu tiên thực tập, tuyển dụng vào hệ thống ngân hàng; có ký túc xá và trung tâm hỗ trợ sinh viên",
+    url: "https://hvnh.edu.vn"
+  },
+  {
+    name: "Đại học Thương mại",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Thương mại điện tử, Hệ thống thông tin quản lý, Marketing, Quản trị kinh doanh, Kế toán, Logistics",
+    score: "Khoảng 24 – 26 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 24 – 28 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập theo kỳ và học bổng doanh nghiệp đối tác",
+    support: "Liên kết doanh nghiệp thương mại – bán lẻ, hỗ trợ thực tập và giới thiệu việc làm; lưu ý trường thuộc khối kinh tế, không đào tạo kỹ thuật",
+    url: "https://tmu.edu.vn"
+  },
+  {
+    name: "Đại học Giao thông Vận tải",
+    type: "Đại học",
+    city: "Hà Nội (cơ sở chính), TP.HCM (phân hiệu)",
+    majors: "Kỹ thuật xây dựng công trình giao thông, Công nghệ thông tin, Logistics và quản lý chuỗi cung ứng, Kỹ thuật ô tô, Kinh tế vận tải",
+    score: "Khoảng 21 – 26 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 15 – 20 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập và học bổng của các tổng công ty xây dựng, giao thông",
+    support: "Liên kết với doanh nghiệp xây dựng – giao thông lớn, sinh viên kỹ thuật được doanh nghiệp đặt hàng tuyển dụng",
+    url: "https://www.utc.edu.vn"
+  },
+  {
+    name: "Đại học Công nghiệp Hà Nội (HaUI)",
+    type: "Đại học",
+    city: "Hà Nội",
+    majors: "Công nghệ kỹ thuật điện – điện tử, Cơ khí, Công nghệ thông tin, Công nghệ kỹ thuật ô tô, Kế toán",
+    score: "Khoảng 21 – 26 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 23 – 26 triệu đồng/năm",
+    scholarship: "Học bổng khuyến khích học tập và học bổng doanh nghiệp Nhật Bản, Hàn Quốc (chương trình kỹ sư làm việc tại Nhật)",
+    support: "Trung tâm hợp tác doanh nghiệp, đào tạo gắn với khu công nghiệp, nhiều chương trình đưa sinh viên đi làm việc tại Nhật Bản",
+    url: "https://www.haui.edu.vn"
+  },
+  {
+    name: "Đại học Cần Thơ",
+    type: "Đại học",
+    city: "Cần Thơ",
+    majors: "Công nghệ thông tin, Nông học, Thủy sản, Kinh tế, Kỹ thuật điện – điện tử, Sư phạm",
+    score: "Khoảng 20 – 27 điểm (tham khảo 2025, tùy ngành)",
+    tuition: "Khoảng 17 – 25 triệu đồng/năm (tùy ngành)",
+    scholarship: "Học bổng khuyến khích học tập và nhiều học bổng hỗ trợ sinh viên vùng Đồng bằng sông Cửu Long",
+    support: "Ký túc xá lớn, là trung tâm đào tạo – nghiên cứu của miền Tây, liên kết doanh nghiệp nông nghiệp và thủy sản",
+    url: "https://www.ctu.edu.vn"
+  },
+  {
+    name: "Cao đẳng FPT Polytechnic",
+    type: "Cao đẳng",
+    city: "Hà Nội, TP.HCM, Đà Nẵng, Cần Thơ và nhiều tỉnh thành",
+    majors: "Phát triển phần mềm, Thiết kế đồ họa, Digital Marketing, Quản trị kinh doanh, Du lịch – nhà hàng – khách sạn, Chăm sóc sắc đẹp",
+    score: "Xét tuyển học bạ THPT, không thi đầu vào (tham khảo 2025)",
+    tuition: "Khoảng 12 – 14 triệu đồng/học kỳ (tùy cơ sở và ngành)",
+    scholarship: "Học bổng nhập học và học bổng tài năng cho sinh viên có thành tích học tập, hoạt động tốt",
+    support: "Đào tạo thực hành theo dự án doanh nghiệp thuộc hệ sinh thái FPT, hỗ trợ giới thiệu việc làm sau tốt nghiệp",
+    url: "https://caodang.fpt.edu.vn"
+  },
+  {
+    name: "Cao đẳng Kỹ thuật Cao Thắng",
+    type: "Cao đẳng",
+    city: "TP.HCM",
+    majors: "Công nghệ kỹ thuật điện – điện tử, Cơ khí, Công nghệ kỹ thuật ô tô, Công nghệ thông tin, Điện tử – viễn thông",
+    score: "Xét tuyển học bạ hoặc điểm thi tốt nghiệp THPT (tham khảo 2025)",
+    tuition: "Khoảng 5 – 8 triệu đồng/năm (trường công lập, học phí thấp)",
+    scholarship: "Học bổng khuyến khích học tập và học bổng doanh nghiệp cho sinh viên kỹ thuật giỏi nghề",
+    support: "Truyền thống đào tạo kỹ thuật hơn 100 năm, xưởng thực hành lớn, doanh nghiệp khu vực phía Nam ưu tiên tuyển dụng",
+    url: "https://caothang.edu.vn"
+  },
+  {
+    name: "Cao đẳng Công nghệ Thủ Đức",
+    type: "Cao đẳng",
+    city: "TP.HCM",
+    majors: "Công nghệ thông tin, Điện tử công nghiệp, Cơ khí chế tạo, Kế toán, Quản trị kinh doanh, Tiếng Anh, Tiếng Nhật",
+    score: "Xét tuyển học bạ THPT (tham khảo 2025)",
+    tuition: "Khoảng 6 – 9 triệu đồng/năm (trường công lập)",
+    scholarship: "Học bổng khuyến khích học tập và hỗ trợ sinh viên có hoàn cảnh khó khăn",
+    support: "Liên kết doanh nghiệp tại Khu Công nghệ cao TP.HCM và TP. Thủ Đức, hỗ trợ thực tập và việc làm cho sinh viên",
+    url: "https://tdc.edu.vn"
+  }
+];
+
+const JOB_CATS = [
+  {
+    title: "Tuyển người lao động phổ thông",
+    desc: "Nhu cầu lớn tại khu công nghiệp, kho vận, xây dựng, giúp việc và dịch vụ tại Hà Nội, TP.HCM, Bình Dương, Bắc Ninh... Thường không yêu cầu bằng cấp, tuyển liên tục quanh năm.",
+    links: [
+      { label: "Việc Làm 24h – lao động phổ thông", url: "https://vieclam24h.vn/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "MyWork", url: "https://mywork.com.vn/" },
+      { label: "123Job", url: "https://123job.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển công nhân",
+    desc: "Công nhân sản xuất, lắp ráp điện tử, may mặc, cơ khí tại các khu công nghiệp lớn; nhiều doanh nghiệp FDI hỗ trợ xe đưa đón, nhà ở và bữa ăn ca.",
+    links: [
+      { label: "Việc Làm 24h", url: "https://vieclam24h.vn/" },
+      { label: "MyWork – việc làm công nhân", url: "https://mywork.com.vn/" },
+      { label: "CareerLink", url: "https://www.careerlink.vn/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" }
+    ]
+  },
+  {
+    title: "Tuyển nhân viên",
+    desc: "Nhân viên văn phòng, bán hàng, chăm sóc khách hàng, hành chính, kinh doanh... ở mọi ngành nghề; phù hợp cả sinh viên mới ra trường và người có kinh nghiệm.",
+    links: [
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" },
+      { label: "Việc Làm 24h", url: "https://vieclam24h.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển quản lí",
+    desc: "Vị trí quản lý cấp trung: quản lý cửa hàng, quản lý sản xuất, quản lý dự án, team leader... thường yêu cầu 2–5 năm kinh nghiệm và kỹ năng điều hành đội nhóm.",
+    links: [
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển nhân sự (HR)",
+    desc: "Chuyên viên tuyển dụng, C&B, đào tạo, hành chính nhân sự tại doanh nghiệp mọi quy mô; nhu cầu ổn định ở cả công ty Việt Nam và FDI.",
+    links: [
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" }
+    ]
+  },
+  {
+    title: "Tuyển giám đốc",
+    desc: "Giám đốc điều hành (CEO), giám đốc kinh doanh, giám đốc tài chính (CFO), giám đốc nhà máy... Vị trí cấp cao thường tuyển qua đơn vị săn đầu người (headhunter) và mạng lưới LinkedIn.",
+    links: [
+      { label: "Navigos Search – tuyển dụng cấp cao", url: "https://www.navigossearch.com/" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" },
+      { label: "Glassdoor", url: "https://www.glassdoor.com/" }
+    ]
+  },
+  {
+    title: "Tuyển phó giám đốc",
+    desc: "Phó giám đốc phụ trách chuyên môn, vận hành, kinh doanh tại doanh nghiệp vừa và lớn; thường yêu cầu kinh nghiệm quản lý nhiều năm trong cùng lĩnh vực.",
+    links: [
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "Navigos Search", url: "https://www.navigossearch.com/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" }
+    ]
+  },
+  {
+    title: "Tuyển kế toán",
+    desc: "Kế toán tổng hợp, kế toán thuế, kế toán kho, kế toán công nợ... nhu cầu thường xuyên ở mọi doanh nghiệp; ưu tiên ứng viên có chứng chỉ và kinh nghiệm phần mềm kế toán.",
+    links: [
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "Việc Làm 24h", url: "https://vieclam24h.vn/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển trưởng phòng",
+    desc: "Trưởng phòng kinh doanh, nhân sự, marketing, kỹ thuật, tài chính... Vị trí quản lý cấp trung chủ chốt, yêu cầu kinh nghiệm chuyên môn vững và khả năng xây dựng đội ngũ.",
+    links: [
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "Navigos Search", url: "https://www.navigossearch.com/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" }
+    ]
+  },
+  {
+    title: "Tuyển phó phòng",
+    desc: "Phó trưởng phòng hỗ trợ điều hành bộ phận, thường là bước đệm lên trưởng phòng; phù hợp ứng viên có 3–5 năm kinh nghiệm chuyên môn.",
+    links: [
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" },
+      { label: "Việc Làm 24h", url: "https://vieclam24h.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển trưởng kế toán",
+    desc: "Kế toán trưởng chịu trách nhiệm toàn bộ hệ thống kế toán – thuế của doanh nghiệp, bắt buộc có chứng chỉ kế toán trưởng theo quy định; nhu cầu cao ở doanh nghiệp sản xuất và thương mại.",
+    links: [
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" },
+      { label: "Navigos Search", url: "https://www.navigossearch.com/" },
+      { label: "CareerViet", url: "https://careerviet.vn/" }
+    ]
+  },
+  {
+    title: "Tuyển kiểm toán",
+    desc: "Kiểm toán viên, trợ lý kiểm toán tại các hãng kiểm toán Big 4 và công ty kiểm toán trong nước; mùa tuyển dụng lớn thường vào cuối năm, ưu tiên sinh viên mới tốt nghiệp ngành tài chính – kế toán.",
+    links: [
+      { label: "PwC Việt Nam – Careers", url: "https://www.pwc.com/vn/en/careers.html" },
+      { label: "Deloitte Việt Nam – Careers", url: "https://www.deloitte.com/vn/en/careers.html" },
+      { label: "VietnamWorks", url: "https://www.vietnamworks.com/" },
+      { label: "TopCV – tìm việc làm", url: "https://www.topcv.vn/tim-viec-lam" }
+    ]
+  },
+  {
+    title: "Tuyển phó chủ tịch",
+    desc: "Phó chủ tịch (Vice President) phụ trách mảng tại tập đoàn và tổng công ty; vị trí rất cao cấp, chủ yếu tuyển qua mạng lưới điều hành và đơn vị săn đầu người quốc tế.",
+    links: [
+      { label: "Navigos Search – tuyển dụng cấp cao", url: "https://www.navigossearch.com/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" },
+      { label: "Glassdoor", url: "https://www.glassdoor.com/" },
+      { label: "Indeed", url: "https://www.indeed.com/" }
+    ]
+  },
+  {
+    title: "Tuyển chủ tịch",
+    desc: "Chủ tịch hội đồng quản trị / chủ tịch công ty tại các tập đoàn và doanh nghiệp lớn. Đây là vị trí do cổ đông bầu chọn hoặc bổ nhiệm, thông tin thường công bố qua đại hội cổ đông và báo chí doanh nghiệp; các kênh dưới đây là nơi theo dõi cơ hội lãnh đạo cấp cao nhất.",
+    links: [
+      { label: "Navigos Search – tuyển dụng cấp cao", url: "https://www.navigossearch.com/" },
+      { label: "LinkedIn Jobs", url: "https://www.linkedin.com/jobs/" },
+      { label: "Glassdoor", url: "https://www.glassdoor.com/" }
+    ]
+  },
+  {
+    title: "Tuyển dụng tập đoàn lớn quốc tế",
+    desc: "Các tập đoàn đa quốc gia tuyển dụng tại Việt Nam và toàn cầu: công nghệ, điện tử, hàng tiêu dùng... Tin tuyển dụng cập nhật liên tục 2026–2027 tại các trang careers chính thức dưới đây.",
+    links: [
+      { label: "Samsung Careers", url: "https://www.samsung.com/vn/about-us/careers/" },
+      { label: "Intel Jobs", url: "https://www.intel.com/content/www/us/en/jobs/jobs-at-intel.html" },
+      { label: "Google Careers", url: "https://careers.google.com/" },
+      { label: "Microsoft Careers", url: "https://careers.microsoft.com/" },
+      { label: "Unilever Careers", url: "https://careers.unilever.com/" }
+    ]
+  },
+  {
+    title: "Tuyển dụng tập đoàn/công ty lớn Việt Nam",
+    desc: "Vingroup, FPT, Viettel, Vinamilk, Thế Giới Di Động... tuyển dụng nhiều vị trí từ công nhân, nhân viên đến quản lý cấp cao. Tin tuyển dụng cập nhật liên tục 2026–2027 tại các trang tuyển dụng chính thức dưới đây.",
+    links: [
+      { label: "Vingroup – Tuyển dụng", url: "https://tuyendung.vingroup.net" },
+      { label: "FPT – Career", url: "https://career.fpt.com.vn" },
+      { label: "Viettel – Tuyển dụng", url: "https://tuyendung.viettel.vn" },
+      { label: "Thế Giới Di Động – Việc làm", url: "https://vieclam.thegioididong.com" },
+      { label: "Vinamilk – trang chủ chính thức", url: "https://www.vinamilk.com.vn" }
+    ]
+  }
+];
+
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');
+
+function veChinh(){ $('#manHinhChiTiet').classList.add('an'); $('#manHinhChinh').classList.remove('an'); window.scrollTo(0,0); }
+function moChiTiet(html){ $('#noiDungChiTiet').innerHTML=html; $('#manHinhChinh').classList.add('an'); $('#manHinhChiTiet').classList.remove('an'); window.scrollTo(0,0); }
+
+// Lưới Top
+const ICON_TOP={'danh-gia':'👑','dat-nhat':'💎','re-nhat':'🪙','diem-cao':'🎯','nhieu-nganh':'📚'};
+$('#luoiTop').innerHTML = TOP_LISTS.map((l,i)=>`<div class="oLon" onclick="moTop(${i})"><div class="ic">${ICON_TOP[l.id]||'🏆'}</div><div><b>${esc(l.title)}</b><span>${esc(l.desc||'')}</span></div></div>`).join('');
+function moTop(i){
+  const l=TOP_LISTS[i];
+  let h=`<div class="chiTiet"><h2 style="color:#0b5fa5">${esc(l.title)}</h2><p class="moTa">${esc(l.desc||'')}</p>`;
+  l.items.forEach((it,j)=>{ h+=`<div class="theTruong"><span class="hang">#${j+1}</span> <h3 style="display:inline">${esc(it.name)}</h3><p>🌍 ${esc(it.country)} · <b>${esc(it.metric)}</b></p><p>${esc(it.note||'')}</p>${it.url?`<a href="${it.url}" target="_blank" rel="noopener">🌐 Trang chính thức của trường</a>`:''}</div>`; });
+  h+=`<p class="moTa">${esc(l.source||'')} ${esc(l.note||'')}</p></div>`;
+  moChiTiet(h);
+}
+
+// Lưới quốc gia
+$('#luoiNuoc').innerHTML = COUNTRIES.map((c,i)=>`<div class="oNuoc" onclick="moNuoc(${i})"><span class="co">${c.flag}</span><b>${esc(c.name)}</b><span>${esc(c.region)}</span></div>`).join('');
+function moNuoc(i){
+  const c=COUNTRIES[i];
+  let h=`<div class="chiTiet"><h2 style="color:#0b5fa5">${c.flag} ${esc(c.name)}</h2>
+  <p><b>Khu vực:</b> ${esc(c.region)} · <b>Ngôn ngữ đào tạo:</b> ${esc(c.lang)}</p>
+  <p><b>Học phí tham khảo:</b> ${esc(c.tuition)}</p>
+  <p>${esc(c.note)}</p>
+  <p><b>Học bổng tiêu biểu:</b> ${esc(c.scholar)}</p>
+  <p><a class="nutLink" href="${c.portal}" target="_blank" rel="noopener">📋 ${esc(c.portalLabel)}</a></p>
+  <h2 class="tieuDeMuc">Trường tiêu biểu của ${esc(c.name)}</h2>`;
+  c.schools.forEach(s=>{ h+=`<div class="theTruong"><h3>${esc(s.name)}</h3><p>${esc(s.note)}</p></div>`; });
+  h+='</div>';
+  moChiTiet(h);
+}
+
+// Tuyển sinh VN
+function moVN(){
+  let h=`<div class="chiTiet"><h2 style="color:#0b5fa5">🇻🇳 Tuyển sinh đầu vào — Cao đẳng, Đại học Việt Nam</h2><p class="moTa">Điểm chuẩn là khoảng tham khảo năm 2025 theo nhóm ngành cao nhất – thấp nhất của từng trường; học phí là khoảng một năm học. Bấm "Trang tuyển sinh chính thức" để xem thông tin mới nhất của năm tuyển sinh hiện hành.</p>`;
+  VN_SCHOOLS.forEach(s=>{ h+=`<div class="theTruong"><h3>${esc(s.name)}</h3><p>🏫 ${esc(s.type)} · 📍 ${esc(s.city)}</p><p><b>Ngành tiêu biểu:</b> ${esc(s.majors)}</p><p><b>Điểm chuẩn:</b> ${esc(s.score)}</p><p><b>Học phí:</b> ${esc(s.tuition)}</p><p><b>Học bổng:</b> ${esc(s.scholarship)}</p><p><b>Hỗ trợ sinh viên / đầu ra:</b> ${esc(s.support)}</p><a href="${s.url}" target="_blank" rel="noopener">📋 Trang tuyển sinh chính thức</a></div>`; });
+  h+='</div>'; moChiTiet(h);
+}
+
+// Đầu ra & hỗ trợ
+function moDauRa(){
+  let h=`<div class="chiTiet"><h2 style="color:#0b5fa5">🎯 Đầu ra &amp; hỗ trợ sinh viên</h2><p class="moTa">Cách các trường hỗ trợ sinh viên trong học tập và sau khi ra trường — tổng hợp từ chính sách học bổng, ký túc xá, thực tập và liên kết doanh nghiệp của từng trường/quốc gia.</p>
+  <h2 class="tieuDeMuc">🇻🇳 Tại Việt Nam</h2>`;
+  VN_SCHOOLS.forEach(s=>{ h+=`<div class="theTruong"><h3>${esc(s.name)}</h3><p><b>Học bổng:</b> ${esc(s.scholarship)}</p><p><b>Hỗ trợ / đầu ra:</b> ${esc(s.support)}</p></div>`; });
+  h+=`<h2 class="tieuDeMuc">🌍 Du học các nước</h2>`;
+  COUNTRIES.slice(1).forEach(c=>{ h+=`<div class="theTruong"><h3>${c.flag} ${esc(c.name)}</h3><p><b>Học bổng &amp; hỗ trợ:</b> ${esc(c.scholar)}</p><p>${esc(c.note)}</p></div>`; });
+  h+='</div>'; moChiTiet(h);
+}
+
+// Việc làm
+function moViecLam(){
+  let h=`<div class="chiTiet"><h2 style="color:#0b5fa5">💼 Tuyển dụng — Việt Nam &amp; thế giới</h2><p class="moTa">Bấm vào từng mục để xem mô tả chi tiết và các link tuyển dụng chính thức / trang tìm việc uy tín đang cập nhật liên tục 2026–2027.</p><div class="luoiTop">`;
+  JOB_CATS.forEach((j,i)=>{ h+=`<div class="oLon" onclick="moMucViec(${i})"><div class="ic">📌</div><div><b>${esc(j.title)}</b><span>${esc(j.desc)}</span></div></div>`; });
+  h+='</div></div>'; moChiTiet(h);
+}
+function moMucViec(i){
+  const j=JOB_CATS[i];
+  let h=`<div class="chiTiet"><button class="nutQuayLai" onclick="moViecLam()">⬅ Về danh sách tuyển dụng</button><h2 style="color:#0b5fa5">${esc(j.title)}</h2><p>${esc(j.desc)}</p><h2 class="tieuDeMuc">🔗 Link tuyển dụng hiện hành</h2>`;
+  j.links.forEach(l=>{ h+=`<p><a class="nutLink" href="${l.url}" target="_blank" rel="noopener">${esc(l.label)}</a></p>`; });
+  h+='</div>'; moChiTiet(h);
+}
+
+// Tìm kiếm
+$('#oTim').addEventListener('input', e=>{
+  const q=e.target.value.trim().toLowerCase(); const box=$('#ketQua');
+  if(q.length<2){ box.classList.add('an'); box.innerHTML=''; return; }
+  let h='<h2 class="tieuDeMuc">Kết quả tìm kiếm</h2>', n=0;
+  COUNTRIES.forEach((c,i)=>{ if(c.name.toLowerCase().includes(q)){ h+=`<div class="theTruong" onclick="moNuoc(${i})"><h3>${c.flag} Quốc gia: ${esc(c.name)}</h3></div>`; n++; }});
+  TOP_LISTS.forEach(l=>{ l.items.forEach(it=>{ if(it.name.toLowerCase().includes(q)){ h+=`<div class="theTruong"><h3>${esc(it.name)}</h3><p>${esc(l.title)} · ${esc(it.country)} · ${esc(it.metric)}</p>${it.url?`<a href="${it.url}" target="_blank" rel="noopener">🌐 Trang chính thức</a>`:''}</div>`; n++; }});});
+  VN_SCHOOLS.forEach(s=>{ if((s.name+' '+s.majors).toLowerCase().includes(q)){ h+=`<div class="theTruong" onclick="moVN()"><h3>🇻🇳 ${esc(s.name)}</h3><p>${esc(s.majors)}</p></div>`; n++; }});
+  JOB_CATS.forEach((j,i)=>{ if(j.title.toLowerCase().includes(q)){ h+=`<div class="theTruong" onclick="moViecLam()"><h3>💼 ${esc(j.title)}</h3></div>`; n++; }});
+  box.innerHTML = n? h : '<p class="moTa">Không thấy kết quả phù hợp — thử từ khóa khác.</p>';
+  box.classList.remove('an');
+});
+</script>
+</body>
+</html>
