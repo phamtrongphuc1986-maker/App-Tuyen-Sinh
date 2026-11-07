@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://phamtrongphuc1986-maker.github.io/App-Tuyen-Sinh/sitemap.xml
